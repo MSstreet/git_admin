@@ -1,0 +1,33 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://localhost:3306/new_pet_db?serverTimezone=Asia/Seoul
+    username : myungsoo
+    password: lms*!$Ms0828
+
+mybatis:
+  mapper-locations: classpath:mapper/**.xml
+  configuration:
+    map-underscore-to-camel-case: 'true'
+    call-setters-on-nulls: 'false'
+
+logging:
+  level:
+    jdbc:
+      connection: 'OFF'
+      sqlonly: 'OFF'
+      resultset: 'OFF'
+      resultsettable: 'OFF'
+      sqltiming: INFO
+      audit: 'OFF'
+
+jpa:
+  hibernate:
+    ddl-auto: update
+  show-sql: true
+  generate-ddl: true
+  defer-datasource-initialization: true
+

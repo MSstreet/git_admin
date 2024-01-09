@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.petadmin.db.NoticeBoardMapper">
+    <select id="getNoticeList" resultType="com.example.petadmin.entity.NoticeEntity">
+        select contents
+             , title
+             , contents
+             , display_yn
+             , delete_yn
+             , created_at
+             , updated_at
+         from notice_board
+        <if test="sk != '' || sk != null">
+            <if test="sk == 'title'">
+                AND TITLE LIKE CONCAT('%', #{sv}, '%')
+            </if>
+            <if test="sk == 'contents'">
+                AND CONTENTS LIKE CONCAT('%', #{sv}, '%')
+            </if>
+            <if test="sk == 'createdBy'">
+                AND CREATED_BY LIKE CONCAT('%', #{sv}, '%')
+            </if>
+        </if>
+        ORDER BY IDX DESC
+        LIMIT #{page}, #{size}
+    </select>
+
+    <select id="getNoticeListCount" parameterType="Map" resultType="Int">
+        SELECT COUNT(IDX)
+        FROM notice_board
+        WHERE 1=1
+        <if test="sk != '' || sk != null">
+            <if test="sk == 'title'">
+                AND TITLE LIKE CONCAT('%', #{sv}, '%')
+            </if>
+            <if test="sk == 'contents'">
+                AND CONTENTS LIKE CONCAT('%', #{sv}, '%')
+            </if>
+            <if test="sk == 'createdBy'">
+                AND CREATED_BY LIKE CONCAT('%', #{sv}, '%')
+            </if>
+        </if>
+    </select>
+
+    <select id="getNoticeDetail" parameterType="Long" resultType="com.example.petadmin.entity.NoticeEntity">
+        SELECT
+             , title
+             , contents
+             , display_yn
+             , delete_yn
+             , created_at
+             , updated_at
+          FROM notice_board
+         WHERE IDX = #{idx}
+    </select>
+
+    <insert id="insertNotice" parameterType="com.example.petadmin.entity.NoticeEntity" keyProperty="idx" useGeneratedKeys="true">
+        INSERT INTO notice_board
+        (
+          title
+        , contents
+        , display_yn
+        , delete_yn
+        , created_at
+        , updated_at
+        ) VALUES (
+          #{title}
+        , #{contents}
+        , #{displayYn}
+        , 0
+        , now()
+        , now()
+        )
+    </insert>
+
+    <update id="updateNotice" parameterType="com.example.petadmin.entity.NoticeEntity">
+        UPDATE
+               notice_board
+        SET
+               TITLE = #{title}
+             , CONTENTS = #{contents}
+             , display_yn = #{displayYn}
+             , updated_at = now()
+        WHERE IDX = #{idx}
+    </update>
+
+    <delete id="deleteNotice" parameterType="Long">
+        DELETE FROM notice_board
+        WHERE IDX = #{idx}
+    </delete>
+</mapper>
