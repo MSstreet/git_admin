@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
+@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping("/notice")
 @RestController
@@ -22,7 +23,7 @@ public class NoticeController {
 
 
     @GetMapping("/noticeList")
-    Header<List<NoticeEntity>> getNoticeList(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, Search search) {
+    Header<List<NoticeEntity>> getNoticeList(@RequestParam(name = "page", defaultValue = "0") int page, @RequestParam(name = "size",defaultValue = "10") int size, Search search) {
         return noticeService.getNoticeList(page, size, search);
     }
 

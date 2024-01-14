@@ -3,8 +3,8 @@
 
 <mapper namespace="com.example.petadmin.db.NoticeBoardMapper">
     <select id="getNoticeList" resultType="com.example.petadmin.entity.NoticeEntity">
-        select contents
-             , title
+        select
+               title
              , contents
              , display_yn
              , delete_yn
@@ -22,12 +22,12 @@
                 AND CREATED_BY LIKE CONCAT('%', #{sv}, '%')
             </if>
         </if>
-        ORDER BY IDX DESC
+        ORDER BY notice_idx DESC
         LIMIT #{page}, #{size}
     </select>
 
     <select id="getNoticeListCount" parameterType="Map" resultType="Int">
-        SELECT COUNT(IDX)
+        SELECT COUNT(notice_idx)
         FROM notice_board
         WHERE 1=1
         <if test="sk != '' || sk != null">
@@ -52,7 +52,7 @@
              , created_at
              , updated_at
           FROM notice_board
-         WHERE IDX = #{idx}
+         WHERE notice_idx = #{notice_idx}
     </select>
 
     <insert id="insertNotice" parameterType="com.example.petadmin.entity.NoticeEntity" keyProperty="idx" useGeneratedKeys="true">
@@ -82,11 +82,11 @@
              , CONTENTS = #{contents}
              , display_yn = #{displayYn}
              , updated_at = now()
-        WHERE IDX = #{idx}
+        WHERE notice_idx = #{notice_idx}
     </update>
 
     <delete id="deleteNotice" parameterType="Long">
         DELETE FROM notice_board
-        WHERE IDX = #{idx}
+        WHERE notice_idx = #{notice_idx}
     </delete>
 </mapper>
