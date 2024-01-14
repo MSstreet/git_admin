@@ -39,7 +39,8 @@
 - 랜더링 할 때 오브젝트 타입을 그대로 화면에 출력하려 했기에 나타난 에러이기 때문에 랜더링 할 때 오브젝트 데이터를 처리해서 데이터 타입을 정확히 설정
   
 - ### before
-const NoticeList = () => {
+
+    const NoticeList = () => {
     const [noticeList, setNoticeList] = useState([]);
 
     const getNoticeList = async () => {
@@ -62,7 +63,8 @@ const NoticeList = () => {
 
 
 - ### after
-const NoticeList = () => {
+
+    const NoticeList = () => {
     const [noticeList, setNoticeList] = useState([]);
 
     const getNoticeList = async () => {
