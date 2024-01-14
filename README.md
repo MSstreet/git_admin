@@ -20,7 +20,7 @@
 
 - root 계정 접속 > db 생성 > 유저 생성 및 권한 설정
 
-- ## 2024-01-14
+## 2024-01-14
 
 - (react 사용) 공지사항 데이터 axios를 이용해 화면에 출력해보기
   
@@ -30,7 +30,7 @@
 
 ⚒️ 해결 방법  
 
-서버 쪽 Controller에 CrossOrigin 어노테이션 설정 
+- 서버 쪽 Controller에 CrossOrigin 어노테이션 설정 
 
 2. Objects are not valid as a React child 에러 발생
 
