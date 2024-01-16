@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const NoticeList = () => {
     const [noticeList, setNoticeList] = useState([]);
@@ -20,8 +21,10 @@ const NoticeList = () => {
         <div>
             <ul>
                 {noticeList.map((notice) => (
-                    // 4) map 함수로 데이터 출력
-                    <li  key={notice.idx}>{notice.title}</li>
+
+                    <li  key={notice.noticeIdx}>
+                        <Link to={`/notice/${notice.noticeIdx}`}>{notice.title}</Link>
+                    </li>
                 ))}
             </ul>
         </div>

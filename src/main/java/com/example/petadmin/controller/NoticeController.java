@@ -28,7 +28,7 @@ public class NoticeController {
     }
 
 
-    @GetMapping("/notice/{idx}")
+    @GetMapping("/{noticeIdx}")
     Header<NoticeEntity> getNoticeDetail(@PathVariable Long idx) {
         return noticeService.getNoticeDetail(idx);
     }
@@ -43,7 +43,7 @@ public class NoticeController {
         return noticeService.updateNotice(noticeSaveDto);
     }
 
-    @DeleteMapping("/notice/{idx}")
+    @DeleteMapping("/{noticeIdx}")
     Header<String> deleteBoard(@PathVariable Long idx) {
         return noticeService.deleteNotice(idx);
     }

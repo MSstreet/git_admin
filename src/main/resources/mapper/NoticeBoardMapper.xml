@@ -4,7 +4,8 @@
 <mapper namespace="com.example.petadmin.db.NoticeBoardMapper">
     <select id="getNoticeList" resultType="com.example.petadmin.entity.NoticeEntity">
         select
-               title
+               notice_idx
+             , title
              , contents
              , display_yn
              , delete_yn
