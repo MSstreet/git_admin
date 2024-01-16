@@ -1,4 +1,4 @@
-![image](https://github.com/MSstreet/pet_admin/assets/101779333/1c2f5865-0b51-4656-9c2b-da9d3f5cb157)# pet 관리자
+# pet 관리자
 
 ##  임명수
 ## 2024-01-09
