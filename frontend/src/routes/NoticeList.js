@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 
 const NoticeList = () => {
+    const navigate = useNavigate();
     const [noticeList, setNoticeList] = useState([]);
 
     const getNoticeList = async () => {
@@ -13,6 +14,10 @@ const NoticeList = () => {
         console.log(pngn);
     }
 
+    const moveToWrite = () => {
+        navigate('/write');
+    };
+
     useEffect(() => {
         getNoticeList(); // 1) 게시글 목록 조회 함수 호출
     }, []);
@@ -21,12 +26,14 @@ const NoticeList = () => {
         <div>
             <ul>
                 {noticeList.map((notice) => (
-
-                    <li  key={notice.noticeIdx}>
+                    <li key={notice.noticeIdx}>
                         <Link to={`/notice/${notice.noticeIdx}`}>{notice.title}</Link>
                     </li>
                 ))}
             </ul>
+            <div>
+                <button onClick={moveToWrite}>글쓰기</button>
+            </div>
         </div>
     );
 };

@@ -23,14 +23,14 @@ public class NoticeController {
 
 
     @GetMapping("/noticeList")
-    Header<List<NoticeEntity>> getNoticeList(@RequestParam(name = "page", defaultValue = "0") int page, @RequestParam(name = "size",defaultValue = "10") int size, Search search) {
+    Header<List<NoticeEntity>> getNoticeList(@RequestParam(name = "page", defaultValue = "0") int page, @RequestParam(name = "size", defaultValue = "10") int size, Search search) {
         return noticeService.getNoticeList(page, size, search);
     }
 
 
     @GetMapping("/{noticeIdx}")
-    Header<NoticeEntity> getNoticeDetail(@PathVariable Long idx) {
-        return noticeService.getNoticeDetail(idx);
+    Header<NoticeEntity> getNoticeDetail(@PathVariable Long noticeIdx) {
+        return noticeService.getNoticeDetail(noticeIdx);
     }
 
     @PostMapping("/insert")
@@ -44,7 +44,7 @@ public class NoticeController {
     }
 
     @DeleteMapping("/{noticeIdx}")
-    Header<String> deleteBoard(@PathVariable Long idx) {
-        return noticeService.deleteNotice(idx);
+    Header<String> deleteBoard(@PathVariable Long noticeIdx) {
+        return noticeService.deleteNotice(noticeIdx);
     }
 }

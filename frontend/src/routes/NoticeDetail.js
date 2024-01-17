@@ -25,7 +25,7 @@ const NoticeDetail = () => {
                 <h2>loading...</h2>
             ) : (
                 <Notice
-                    idx={notice.noticeIdx}
+                    noticeIdx={notice.noticeIdx}
                     title={notice.title}
                     contents={notice.contents}
                     createdBy={notice.createdBy}

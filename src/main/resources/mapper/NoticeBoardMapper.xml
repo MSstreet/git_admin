@@ -46,7 +46,7 @@
 
     <select id="getNoticeDetail" parameterType="Long" resultType="com.example.petadmin.entity.NoticeEntity">
         SELECT
-             , title
+               title
              , contents
              , display_yn
              , delete_yn
@@ -56,7 +56,7 @@
          WHERE notice_idx = #{notice_idx}
     </select>
 
-    <insert id="insertNotice" parameterType="com.example.petadmin.entity.NoticeEntity" keyProperty="idx" useGeneratedKeys="true">
+    <insert id="insertNotice" parameterType="com.example.petadmin.entity.NoticeEntity" keyProperty="noticeIdx" useGeneratedKeys="true">
         INSERT INTO notice_board
         (
           title
@@ -68,7 +68,7 @@
         ) VALUES (
           #{title}
         , #{contents}
-        , #{displayYn}
+        , 1
         , 0
         , now()
         , now()
