@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import Notice from "../components/Notice";
+
 
 const NoticeUpdate = () => {
     const navigate = useNavigate();
@@ -76,4 +76,4 @@ const NoticeUpdate = () => {
     );
 };
 
-export default Notice;
+export default NoticeUpdate;

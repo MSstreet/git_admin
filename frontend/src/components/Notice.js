@@ -3,10 +3,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Notice = ({noticeIdx, title, contents, createdBy}) => {
+const Notice = ({ noticeIdx, title, contents, createdBy }) => {
     const navigate = useNavigate();
+
     const moveToUpdate = () => {
-        navigate('/update/' + noticeIdx);
+        navigate('/update/'+noticeIdx);
     };
     const deleteNotice = async () => {
         if (window.confirm('공지글을 삭제하시겠습니까?')) {
