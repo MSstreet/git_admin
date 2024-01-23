@@ -6,6 +6,7 @@ import com.example.petadmin.entity.NoticeEntity;
 import com.example.petadmin.service.NoticeService;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Search;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -22,19 +23,19 @@ public class NoticeController {
     private final NoticeService noticeService;
 
 
-    @GetMapping("/noticeList")
+    @GetMapping("/list")
     Header<List<NoticeEntity>> getNoticeList(@RequestParam(name = "page", defaultValue = "0") int page, @RequestParam(name = "size", defaultValue = "10") int size, Search search) {
         return noticeService.getNoticeList(page, size, search);
     }
 
 
-    @GetMapping("/{noticeIdx}")
-    Header<NoticeEntity> getNoticeDetail(@PathVariable Long noticeIdx) {
-        return noticeService.getNoticeDetail(noticeIdx);
+    @GetMapping("/{idx}")
+    Header<NoticeEntity> getNoticeDetail(@PathVariable Long idx) {
+        return noticeService.getNoticeDetail(idx);
     }
 
     @PostMapping("/insert")
-    Header<NoticeEntity> insertNotice(@RequestBody NoticeSaveDto noticeSaveDto) {
+    Header<NoticeEntity> insertNotice(@RequestBody @Valid NoticeSaveDto noticeSaveDto) {
         return noticeService.insertNotice(noticeSaveDto);
     }
 
@@ -43,8 +44,8 @@ public class NoticeController {
         return noticeService.updateNotice(noticeSaveDto);
     }
 
-    @DeleteMapping("/{noticeIdx}")
-    Header<String> deleteBoard(@PathVariable Long noticeIdx) {
-        return noticeService.deleteNotice(noticeIdx);
+    @DeleteMapping("/{idx}")
+    Header<String> deleteBoard(@PathVariable Long idx) {
+        return noticeService.deleteNotice(idx);
     }
 }

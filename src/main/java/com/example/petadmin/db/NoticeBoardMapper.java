@@ -21,4 +21,6 @@ public interface NoticeBoardMapper {
     int updateNotice(NoticeEntity entity);
 
     int deleteNotice(Long idx);
+
+    void deleteAllNotice();
 }

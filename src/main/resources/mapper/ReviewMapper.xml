@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.example.petadmin.db.ReviewMapper">
+    <select id="getReviewList" resultType="com.example.petadmin.entity.ReviewEntity">
+        select
+               review_idx
+          from review_entity
+      ORDER BY review_idx DESC
+         LIMIT #{page}, #{size}
+    </select>
+
+    <select id="getReviewListCount" parameterType="Map" resultType="Int">
+        SELECT COUNT(review_idx)
+          FROM review_entity
+         WHERE 1=1
+    </select>
+</mapper>

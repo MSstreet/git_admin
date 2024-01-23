@@ -91,4 +91,8 @@
         DELETE FROM notice_board
         WHERE notice_idx = #{notice_idx}
     </delete>
+
+    <delete id="deleteAllNotice">
+        DELETE FROM notice_board
+    </delete>
 </mapper>
