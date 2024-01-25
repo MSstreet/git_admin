@@ -6,6 +6,8 @@ import React from "react";
 import NoticeDetail from "./routes/NoticeDetail";
 import NoticeWrite from './routes/NoticeWrite';
 import NoticeUpdate from './routes/NoticeUpdate';
+import Login from './components/common/Login';
+import Join from './components/common/Join';
 
 function App() {
     return (
@@ -15,6 +17,8 @@ function App() {
             <Route path="/notice/:noticeIdx" element={<NoticeDetail/>}/>
             <Route path="/write" element={<NoticeWrite />} />
             <Route path="/update/:noticeIdx" element={<NoticeUpdate />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/join" element={<Join />} />
         </Routes>
     );
 }

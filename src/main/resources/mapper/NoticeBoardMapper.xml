@@ -54,7 +54,7 @@
              , created_at
              , updated_at
           FROM notice_board
-         WHERE notice_idx = #{notice_idx}
+         WHERE notice_idx = #{noticeIdx}
     </select>
 
     <insert id="insertNotice" parameterType="com.example.petadmin.entity.NoticeEntity" keyProperty="noticeIdx" useGeneratedKeys="true">
@@ -84,12 +84,12 @@
              , CONTENTS = #{contents}
              , display_yn = #{displayYn}
              , updated_at = now()
-        WHERE notice_idx = #{notice_idx}
+        WHERE notice_idx = #{noticeIdx}
     </update>
 
     <delete id="deleteNotice" parameterType="Long">
         DELETE FROM notice_board
-        WHERE notice_idx = #{notice_idx}
+        WHERE notice_idx = #{noticeIdx}
     </delete>
 
     <delete id="deleteAllNotice">

@@ -7,7 +7,7 @@ const NoticeList = () => {
     const [noticeList, setNoticeList] = useState([]);
 
     const getNoticeList = async () => {
-        const resp = await (await axios.get('//localhost:8080/notice/noticeList')).data; // 2) 게시글 목록 데이터에 할당
+        const resp = await (await axios.get('//localhost:8080/notice/list')).data; // 2) 게시글 목록 데이터에 할당
         setNoticeList(resp.data); // 3) boardList 변수에 할당
 
         const pngn = resp.pagination;
