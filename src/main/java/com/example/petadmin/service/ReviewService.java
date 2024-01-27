@@ -1,6 +1,9 @@
 package com.example.petadmin.service;
 
 import com.example.petadmin.db.ReviewMapper;
+import com.example.petadmin.dto.NoticeSaveDto;
+import com.example.petadmin.dto.review.ReviewUpdateDto;
+import com.example.petadmin.entity.NoticeEntity;
 import com.example.petadmin.entity.ReviewEntity;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Pagination;
@@ -40,5 +43,24 @@ public class ReviewService {
 
         return Header.OK(reviewList, pagination);
     }
+
+    public Header<String> deleteReview(Long idx) {
+        if(reviewMapper.deleteReview(idx) > 0) {
+            return Header.OK();
+        }else{
+            return Header.ERROR("ERROR");
+        }
+    }
+
+    public Header<ReviewEntity> updateReview(ReviewUpdateDto reviewUpdateDto) {
+        ReviewEntity entity = reviewUpdateDto.toEntity();
+        if(reviewMapper.updateReview(entity) > 0){
+            return Header.OK(entity);
+        }
+        else{
+            return Header.ERROR("ERROR");
+        }
+    }
+
 
 }

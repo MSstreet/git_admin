@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { auth } from "../actions/user_action";
@@ -15,8 +14,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
 
         useEffect(() => {
             dispatch(auth()).then((res) => {
-                console.log("res@@@@@@@@@: " + res);
-
+                console.log(res)
                 if (!res.payload.isAuth) {
                     // 로그인 하지 않은 상태
                     if (option) {

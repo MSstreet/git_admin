@@ -1,5 +1,8 @@
 package com.example.petadmin.controller;
 
+import com.example.petadmin.dto.NoticeSaveDto;
+import com.example.petadmin.dto.review.ReviewUpdateDto;
+import com.example.petadmin.entity.NoticeEntity;
 import com.example.petadmin.entity.ReviewEntity;
 import com.example.petadmin.service.ReviewService;
 import com.example.petadmin.util.Header;
@@ -23,4 +26,20 @@ public class ReviewController {
     Header<List<ReviewEntity>> getReviewList(@RequestParam(name = "page", defaultValue = "0") int page, @RequestParam(name = "size", defaultValue = "10") int size, Search search) {
         return reviewService.getReviewList(page, size, search);
     }
+
+    @DeleteMapping("/{idx}")
+    Header<String> deleteReview(@PathVariable Long idx){
+        return reviewService.deleteReview(idx);
+    }
+
+    @PatchMapping("/update")
+    Header<ReviewEntity> updateReview(@RequestBody ReviewUpdateDto reviewUpdateDto){
+        return reviewService.updateReview(reviewUpdateDto);
+    }
+
+    @PatchMapping("/approve")
+    Header<ReviewEntity> updateReview(@RequestBody ReviewUpdateDto reviewUpdateDto){
+        return reviewService.updateReview(reviewUpdateDto);
+    }
+
 }

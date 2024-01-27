@@ -16,4 +16,9 @@
           FROM review_entity
          WHERE 1=1
     </select>
+
+    <delete id="deleteReview" parameterType="Long">
+        delete from review_entity
+              where review_idx = {reviewIdx}
+    </delete>
 </mapper>

@@ -12,4 +12,6 @@ public interface ReviewMapper {
     List<ReviewEntity> getReviewList(HashMap<String, Object> paramMap);
 
     int getReviewListCount(HashMap<String, Object> paramMap);
+
+    int deleteReview(Long idx);
 }
