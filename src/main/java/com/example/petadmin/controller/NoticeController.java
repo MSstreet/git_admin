@@ -28,7 +28,6 @@ public class NoticeController {
         return noticeService.getNoticeList(page, size, search);
     }
 
-
     @GetMapping("/{idx}")
     Header<NoticeEntity> getNoticeDetail(@PathVariable Long idx) {
         return noticeService.getNoticeDetail(idx);

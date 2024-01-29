@@ -1,9 +1,7 @@
 package com.example.petadmin.service;
 
 import com.example.petadmin.db.ReviewMapper;
-import com.example.petadmin.dto.NoticeSaveDto;
 import com.example.petadmin.dto.review.ReviewUpdateDto;
-import com.example.petadmin.entity.NoticeEntity;
 import com.example.petadmin.entity.ReviewEntity;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Pagination;
@@ -40,7 +38,6 @@ public class ReviewService {
                 size,
                 10
         );
-
         return Header.OK(reviewList, pagination);
     }
 
@@ -62,5 +59,19 @@ public class ReviewService {
         }
     }
 
-
+    public Header<ReviewEntity> approveReview(ReviewUpdateDto reviewUpdateDto) {
+        ReviewEntity entity = reviewUpdateDto.toEntity();
+        if(entity.getApproveYn() == 0){
+           entity.setApproveYn(1);
+        }
+        else{
+            entity.setApproveYn(0);
+        }
+        if(reviewMapper.ApproveReview(entity) > 0){
+            return Header.OK(entity);
+        }
+        else{
+            return Header.ERROR("ERROR");
+        }
+    }
 }

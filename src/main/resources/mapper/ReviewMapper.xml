@@ -1,24 +1,85 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/schema/mybatis-3-mapper.dtd">
 
-
 <mapper namespace="com.example.petadmin.db.ReviewMapper">
     <select id="getReviewList" resultType="com.example.petadmin.entity.ReviewEntity">
-        select
-               review_idx
-          from review_entity
-      ORDER BY review_idx DESC
-         LIMIT #{page}, #{size}
+                 select
+                        a.review_idx
+                      , a.content
+                      , a.score
+                      , a.tmp_score
+                      , a.kind_score
+                      , a.effect_score
+                      , a.price_score
+                      , a.approve_yn
+                      , a.delete_yn
+                      , a.file_name
+                      , a.created_at
+                      , a.updated_at
+                      , a.created_by
+                      , a.updated_by
+                      , b.hospital_id
+                      , b.hospital_name
+                      , c.user_idx
+                   from review_entity a
+        left outer join pet_hospital_entity b
+                     on a.pet_hospital_entity_hospital_id = b.hospital_id
+        left outer join user_entity c
+                     on a.user_entity_user_idx = c.user_idx
+            <if test="sk != '' || sk != null">
+               <if test="sk == 'content'">
+                    AND CONTENT LIKE CONCAT('%', #{sv}, '%')
+               </if>
+               <if test="sk == 'createdBy'">
+                    AND CREATED_BY LIKE CONCAT('%', #{sv}, '%')
+               </if>
+            </if>
+          ORDER BY review_idx desc;
+                  LIMIT #{page}, #{size}
     </select>
 
     <select id="getReviewListCount" parameterType="Map" resultType="Int">
         SELECT COUNT(review_idx)
           FROM review_entity
-         WHERE 1=1
+      <if test="sk != '' || sk != null">
+           <if test="sk == 'content'">
+                AND CONTENT LIKE CONCAT('%', #{sv}, '%')
+           </if>
+           <if test="sk == 'createdBy'">
+                AND CREATED_BY LIKE CONCAT('%', #{sv}, '%')
+           </if>
+      </if>
+              WHERE 1=1
     </select>
 
     <delete id="deleteReview" parameterType="Long">
         delete from review_entity
               where review_idx = {reviewIdx}
     </delete>
+
+    <update id="updateReview" parameterType="com.example.petadmin.entity.ReviewEntity">
+       UPDATE
+                review_entity
+          SET
+                content       = #{content}
+              , score         = #{score}
+              , tmp_score     = #{tmpScore}
+              , kind_score    = #{kindScore}
+              , effect_score  = #{effectScore}
+              , price_score   = #{priceScore}
+              , updated_at    = #{updatedAt}
+              , updated_by    = #{updatedBBy}
+              , tmp_score     = #{tmpScore}
+              , tmp_score     = #{tmpScore}
+        WHERE   review_idx    = #{reviewIdx}
+    </update>
+
+    <update id="updateReview" parameterType="com.example.petadmin.entity.ReviewEntity">
+        UPDATE
+               review_entity
+           SET
+               approve_yn    = #{approveYn}
+        WHERE  review_idx    = #{reviewIdx}
+    </update>
+
 </mapper>

@@ -37,9 +37,9 @@ public class ReviewController {
         return reviewService.updateReview(reviewUpdateDto);
     }
 
-    @PatchMapping("/approve")
-    Header<ReviewEntity> updateReview(@RequestBody ReviewUpdateDto reviewUpdateDto){
-        return reviewService.updateReview(reviewUpdateDto);
+    @PatchMapping("/approve/{idx}")
+    Header<ReviewEntity> approveReview(@PathVariable Long idx, @RequestBody ReviewUpdateDto reviewUpdateDto){
+        return reviewService.approveReview(reviewUpdateDto);
     }
 
 }
