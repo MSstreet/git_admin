@@ -1,6 +1,7 @@
 package com.example.petadmin.db;
 
 
+import com.example.petadmin.dto.NoticeSaveDto;
 import com.example.petadmin.entity.NoticeEntity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,4 +24,6 @@ public interface NoticeBoardMapper {
     int deleteNotice(Long idx);
 
     void deleteAllNotice();
+
+    int insertNoticeList(List<NoticeEntity> noticeEntities);
 }

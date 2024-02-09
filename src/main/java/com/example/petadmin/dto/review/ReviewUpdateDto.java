@@ -1,13 +1,10 @@
 package com.example.petadmin.dto.review;
 
-import com.example.petadmin.entity.NoticeEntity;
-import com.example.petadmin.entity.ReviewEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
+import com.example.petadmin.entity.ReviewEntity;
+import lombok.*;
+
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

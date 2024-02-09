@@ -2,17 +2,14 @@ package com.example.petadmin.dto.petHospital;
 
 import com.example.petadmin.entity.NoticeEntity;
 import com.example.petadmin.entity.PetHospitalEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
 public class PetHospitalSaveDto {
 
     private BigDecimal hosLatitude;

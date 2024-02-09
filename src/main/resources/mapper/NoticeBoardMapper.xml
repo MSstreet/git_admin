@@ -76,6 +76,27 @@
                  )
     </insert>
 
+    <insert id="insertNoticeList" parameterType="java.util.List" >
+        INSERT INTO notice_board(
+                    title
+                  , contents
+                  , display_yn
+                  , delete_yn
+                  , created_at
+                  , updated_at
+           ) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+                    #{item.title}
+                  , #{item.contents}
+                  , 1
+                  , 0
+                  , now()
+                  , now()
+            )
+        </foreach>
+    </insert>
+
     <update id="updateNotice" parameterType="com.example.petadmin.entity.NoticeEntity">
           UPDATE
                  notice_board
