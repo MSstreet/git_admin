@@ -13,8 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 
 
-@Service
+
 @RequiredArgsConstructor
+@Service
 public class NoticeService {
 
     private final NoticeBoardMapper noticeBoardMapper;

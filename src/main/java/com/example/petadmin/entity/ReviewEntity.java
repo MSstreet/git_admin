@@ -26,6 +26,8 @@ public class ReviewEntity {
     private int deleteYn;
     private String fileName;
     private String originalFileName;
+    private String createdBy;
+    private String updatedBy;
     private String createdAt;
     private String updatedAt;
 

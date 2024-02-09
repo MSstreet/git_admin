@@ -4,93 +4,96 @@
 <mapper namespace="com.example.petadmin.db.NoticeBoardMapper">
     <select id="getNoticeList" resultType="com.example.petadmin.entity.NoticeEntity">
         select
-               notice_idx
-             , title
-             , contents
-             , display_yn
-             , delete_yn
-             , created_at
-             , updated_at
-         from notice_board
-        <if test="sk != '' || sk != null">
-            <if test="sk == 'title'">
+                 notice_idx
+               , title
+               , contents
+               , display_yn
+               , delete_yn
+               , created_at
+               , updated_at
+          from   notice_board
+      <if test="sk != '' || sk != null">
+           <if test="sk == 'title'">
                 AND TITLE LIKE CONCAT('%', #{sv}, '%')
-            </if>
-            <if test="sk == 'contents'">
+           </if>
+           <if test="sk == 'contents'">
                 AND CONTENTS LIKE CONCAT('%', #{sv}, '%')
-            </if>
-            <if test="sk == 'createdBy'">
-                AND CREATED_BY LIKE CONCAT('%', #{sv}, '%')
-            </if>
-        </if>
-        ORDER BY notice_idx DESC
-        LIMIT #{page}, #{size}
+           </if>
+           <if test="sk == 'createdBy'">
+               AND CREATED_BY LIKE CONCAT('%', #{sv}, '%')
+           </if>
+      </if>
+          ORDER BY notice_idx DESC
+             LIMIT #{page}, #{size}
     </select>
 
     <select id="getNoticeListCount" parameterType="Map" resultType="Int">
-        SELECT COUNT(notice_idx)
-        FROM notice_board
-        WHERE 1=1
-        <if test="sk != '' || sk != null">
-            <if test="sk == 'title'">
-                AND TITLE LIKE CONCAT('%', #{sv}, '%')
-            </if>
-            <if test="sk == 'contents'">
-                AND CONTENTS LIKE CONCAT('%', #{sv}, '%')
-            </if>
-            <if test="sk == 'createdBy'">
-                AND CREATED_BY LIKE CONCAT('%', #{sv}, '%')
-            </if>
-        </if>
+            SELECT COUNT(notice_idx)
+              FROM notice_board
+             WHERE 1=1
+          <if test="sk != '' || sk != null">
+               <if test="sk == 'title'">
+                    AND TITLE LIKE CONCAT('%', #{sv}, '%')
+               </if>
+               <if test="sk == 'contents'">
+                    AND CONTENTS LIKE CONCAT('%', #{sv}, '%')
+               </if>
+               <if test="sk == 'createdBy'">
+                    AND CREATED_BY LIKE CONCAT('%', #{sv}, '%')
+               </if>
+          </if>
     </select>
 
     <select id="getNoticeDetail" parameterType="Long" resultType="com.example.petadmin.entity.NoticeEntity">
-        SELECT
-               notice_idx
-             , title
-             , contents
-             , display_yn
-             , delete_yn
-             , created_at
-             , updated_at
-          FROM notice_board
-         WHERE notice_idx = #{noticeIdx}
+            SELECT
+                    notice_idx
+                  , title
+                  , contents
+                  , display_yn
+                  , delete_yn
+                  , created_at
+                  , updated_at
+              FROM  notice_board
+             WHERE notice_idx = #{noticeIdx}
     </select>
 
     <insert id="insertNotice" parameterType="com.example.petadmin.entity.NoticeEntity" keyProperty="noticeIdx" useGeneratedKeys="true">
         INSERT INTO notice_board
         (
-          title
-        , contents
-        , display_yn
-        , delete_yn
-        , created_at
-        , updated_at
+                    title
+                  , contents
+                  , display_yn
+                  , delete_yn
+                  , created_at
+                  , updated_at
         ) VALUES (
-          #{title}
-        , #{contents}
-        , 1
-        , 0
-        , now()
-        , now()
-        )
+                    #{title}
+                  , #{contents}
+                  , 1
+                  , 0
+                  , now()
+                  , now()
+                 )
     </insert>
 
     <update id="updateNotice" parameterType="com.example.petadmin.entity.NoticeEntity">
-        UPDATE
-               notice_board
-        SET
-               TITLE = #{title}
-             , CONTENTS = #{contents}
-             , display_yn = #{displayYn}
-             , updated_at = now()
-        WHERE notice_idx = #{noticeIdx}
+          UPDATE
+                 notice_board
+             SET
+                 TITLE = #{title}
+               , CONTENTS = #{contents}
+               , display_yn = #{displayYn}
+               , updated_at = now()
+           WHERE notice_idx = #{noticeIdx}
     </update>
 
-    <delete id="deleteNotice" parameterType="Long">
-        DELETE FROM notice_board
-        WHERE notice_idx = #{noticeIdx}
-    </delete>
+    <update id="deleteNotice" parameterType="Long">
+          UPDATE
+                 notice_board
+             SET
+                 delete_yn = 1
+           WHERE notice_idx = #{noticeIdx}
+    </update>
 
     <delete id="deleteAllNotice">
         DELETE FROM notice_board

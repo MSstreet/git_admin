@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.petadmin.db.PetHospitalMapper">
+    <select id="getPetHosList" resultType="com.example.petadmin.entity.PetHospitalEntity">
+             select
+                     hospital_id
+                   , hospital_addr
+                   , hospital_name
+                   , hospital_num
+                   , oper_state
+                   , sigun_name
+               from
+                     pet_hospital_entity
+           <if test="sk != '' || sk != null">
+                <if test="sk == 'hospitalName'">
+                     AND hospital_name LIKE CONCAT('%', #{sv}, '%')
+                </if>
+                <if test="sk == 'hospitalNum'">
+                     AND hospital_num LIKE CONCAT('%', #{sv}, '%')
+                </if>
+           </if>
+           ORDER BY hospital_name desc;
+              LIMIT #{page}, #{size}
+    </select>
+
+    <select id="getPetHos" parameterType="Long" resultType="com.example.petadmin.entity.PetHospitalEntity">
+        SELECT
+                 hospital_id
+               , hos_latitude
+               , hos_longitude
+               , hospital_addr
+               , hospital_name
+               , hospital_num
+               , oper_state
+               , sigun_name
+          FROM  pet_hospital_entity
+         WHERE  hospital_id = {hospitalId}
+    </select>
+
+    <insert id="insertPetHos" parameterType="com.example.petadmin.entity.PetHospitalEntity" keyProperty="hospitalId" useGeneratedKeys="true">
+        INSERT INTO pet_hospital_entity
+                  (
+                     hos_latitude
+                    ,hos_longitude
+                    ,hospital_addr
+                    ,hospital_name
+                    ,hospital_num
+                    ,oper_state
+                    ,sigun_name
+                  )
+             VALUES
+                  (
+                    {hosLatitude}
+                   ,{hosLongitude}
+                   ,{hospitalAddr}
+                   ,{hospitalName}
+                   ,{hospitalNum}
+                   ,{operState}
+                   ,{sigunName}
+                  )
+    </insert>
+
+    <update id="updatePetHos" parameterType="com.example.petadmin.entity.PetHospitalEntity">
+        UPDATE
+                 pet_hospital_entity
+           SET
+                 hos_latitude  = #{hosLatitude}
+               , hos_longitude = #{hosLongitude}
+               , hospital_addr = #{hospitalAddr}
+               , hospital_name = #{hospitalName}
+               , hospital_num  = #{hospitalNum}
+               , oper_state    = #{operState}
+               , sigun_name    = #{sigunName}
+         WHERE   hospital_id   = #{hospitalId}
+    </update>
+
+    <update id="deletePetHos" parameterType="Long">
+        UPDATE
+                pet_hospital_entity
+           SET
+                delete_yn = 1
+         WHERE  hospital_id = #{hospitalId}
+    </update>
+
+</mapper>
+
+

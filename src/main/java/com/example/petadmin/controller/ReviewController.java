@@ -1,8 +1,6 @@
 package com.example.petadmin.controller;
 
-import com.example.petadmin.dto.NoticeSaveDto;
 import com.example.petadmin.dto.review.ReviewUpdateDto;
-import com.example.petadmin.entity.NoticeEntity;
 import com.example.petadmin.entity.ReviewEntity;
 import com.example.petadmin.service.ReviewService;
 import com.example.petadmin.util.Header;
