@@ -5,6 +5,7 @@ import com.example.petadmin.entity.ReviewEntity;
 import com.example.petadmin.service.ReviewService;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Search;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class ReviewController {
     }
 
     @PatchMapping("/update")
-    Header<ReviewEntity> updateReview(@RequestBody ReviewUpdateDto reviewUpdateDto){
+    Header<ReviewEntity> updateReview(@RequestBody @Valid ReviewUpdateDto reviewUpdateDto){
         return reviewService.updateReview(reviewUpdateDto);
     }
 

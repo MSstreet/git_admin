@@ -1,6 +1,7 @@
 package com.example.petadmin.controller;
 
-import com.example.petadmin.dto.NoticeSaveDto;
+import com.example.petadmin.controller.exception.notice.NoticeNotFound;
+import com.example.petadmin.dto.notice.NoticeSaveDto;
 import com.example.petadmin.entity.NoticeEntity;
 import com.example.petadmin.service.NoticeService;
 import com.example.petadmin.util.Header;
@@ -36,9 +37,9 @@ public class NoticeController {
         return noticeService.insertNotice(noticeSaveDto);
     }
 
-    @PatchMapping("/update")
-    public Header<NoticeEntity> updateNotice(@RequestBody NoticeSaveDto noticeSaveDto) {
-        return noticeService.updateNotice(noticeSaveDto);
+    @PatchMapping("/{idx}/update")
+    public Header<NoticeEntity> updateNotice(@PathVariable Long idx,@RequestBody NoticeSaveDto noticeSaveDto){
+        return noticeService.updateNotice(idx,noticeSaveDto);
     }
 
     @DeleteMapping("/{idx}")

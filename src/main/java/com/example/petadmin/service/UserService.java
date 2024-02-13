@@ -42,6 +42,7 @@ public class UserService {
     }
 
     public Header<UserEntity> getUserDetail(Long idx) {
+        // To do : Null일 경우 예외처리
         return Header.OK(userMapper.getUserDetail(idx));
     }
 
@@ -55,6 +56,7 @@ public class UserService {
     }
 
     public Header<UserEntity> updateUser(UserSaveDto userSaveDto) {
+        // To do : Null일 경우 예외처리
         UserEntity entity = userSaveDto.toEntity();
         if (userMapper.updateUser(entity) > 0) {
             return Header.OK(entity);
@@ -64,6 +66,7 @@ public class UserService {
     }
 
     public Header<String> deleteUser(Long idx) {
+        // To do : Null일 경우 예외처리
         if (userMapper.deleteUser(idx) > 0) {
             return Header.OK();
         } else {

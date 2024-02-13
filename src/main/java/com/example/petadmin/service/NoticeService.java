@@ -1,7 +1,8 @@
 package com.example.petadmin.service;
 
+import com.example.petadmin.controller.exception.notice.NoticeNotFound;
 import com.example.petadmin.db.NoticeBoardMapper;
-import com.example.petadmin.dto.NoticeSaveDto;
+import com.example.petadmin.dto.notice.NoticeSaveDto;
 import com.example.petadmin.entity.NoticeEntity;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Pagination;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Optional;
 
 
 @RequiredArgsConstructor
@@ -44,6 +45,7 @@ public class NoticeService {
     }
 
     public Header<NoticeEntity> getNoticeDetail(Long idx) {
+        // Null일 경우 예외처리
         return Header.OK(noticeBoardMapper.getNoticeDetail(idx));
     }
 
@@ -56,7 +58,13 @@ public class NoticeService {
         }
     }
 
-    public Header<NoticeEntity> updateNotice(NoticeSaveDto noticeSaveDto) {
+    public Header<NoticeEntity> updateNotice(Long idx,NoticeSaveDto noticeSaveDto) {
+        NoticeEntity noticeEntity = noticeBoardMapper.getNoticeDetail(idx);
+
+        if(noticeEntity == null){
+            // NoticeNotFound 예외처리
+        }
+
         NoticeEntity entity = noticeSaveDto.toEntity();
         if (noticeBoardMapper.updateNotice(entity) > 0) {
             return Header.OK(entity);
@@ -66,6 +74,11 @@ public class NoticeService {
     }
 
     public Header<String> deleteNotice(Long idx) {
+        NoticeEntity noticeEntity = noticeBoardMapper.getNoticeDetail(idx);
+
+        if(noticeEntity == null){
+            // NoticeNotFound 예외처리
+        }
         if (noticeBoardMapper.deleteNotice(idx) > 0) {
             return Header.OK();
         } else {

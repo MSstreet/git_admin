@@ -1,9 +1,7 @@
 package com.example.petadmin.service;
 
 import com.example.petadmin.db.PetHospitalMapper;
-import com.example.petadmin.dto.NoticeSaveDto;
 import com.example.petadmin.dto.petHospital.PetHospitalSaveDto;
-import com.example.petadmin.entity.NoticeEntity;
 import com.example.petadmin.entity.PetHospitalEntity;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Pagination;
@@ -43,6 +41,7 @@ public class PetHospitalService {
         return Header.OK(petHosList, pagination);
     }
     public Header<PetHospitalEntity> getPetHos(Long idx) {
+        // To do : Null일 경우 예외처리
         return Header.OK(petHospitalMapper.getPetHos(idx));
     }
 
@@ -56,6 +55,7 @@ public class PetHospitalService {
     }
 
     public Header<PetHospitalEntity> updatePetHos(PetHospitalSaveDto petHospitalSaveDto){
+        // To do : Null일 경우 예외처리
         PetHospitalEntity entity = petHospitalSaveDto.toEntity();
         if(petHospitalMapper.updatePetHos(entity) > 0) {
             return Header.OK(entity);
@@ -65,6 +65,7 @@ public class PetHospitalService {
     }
 
     public Header<String> deletePetHos(Long idx){
+        // To do : Null일 경우 예외처리
         if (petHospitalMapper.deletePetHos(idx) > 0){
             return Header.OK();
         }else{

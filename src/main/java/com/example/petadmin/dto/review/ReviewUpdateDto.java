@@ -2,6 +2,7 @@ package com.example.petadmin.dto.review;
 
 
 import com.example.petadmin.entity.ReviewEntity;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Getter
@@ -11,18 +12,19 @@ import lombok.*;
 public class ReviewUpdateDto {
 
     private Long reviewIdx;
+    @NotBlank(message = "내용을 입력하세요")
     private String content;
-
+    @NotBlank(message = "효과 평점을 입력하세요")
     private int effectScore;
+    @NotBlank(message = "가격 평점을 입력하세요")
     private int priceScore;
+    @NotBlank(message = "친절 평점을 입력하세요")
     private int kindnessScore;
 
     private float score;
     private float tmpScore;
-
     private int approveYn;
     private int deleteYn;
-
     private String updatedAt;
 
     public ReviewEntity toEntity(){

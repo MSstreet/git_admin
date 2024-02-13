@@ -9,12 +9,9 @@ import org.hibernate.annotations.DynamicUpdate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
 @Table(name = "notice_board")
 public class NoticeEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long noticeIdx;         // 공지사항 고유번호
     private String title;           // 제목
     private String contents;        // 내용

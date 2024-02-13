@@ -42,6 +42,7 @@ public class ReviewService {
     }
 
     public Header<String> deleteReview(Long idx) {
+        // To do : Null일 경우 예외처리
         if(reviewMapper.deleteReview(idx) > 0) {
             return Header.OK();
         }else{
@@ -50,6 +51,7 @@ public class ReviewService {
     }
 
     public Header<ReviewEntity> updateReview(ReviewUpdateDto reviewUpdateDto) {
+        // To do : Null일 경우 예외처리
         ReviewEntity entity = reviewUpdateDto.toEntity();
         if(reviewMapper.updateReview(entity) > 0){
             return Header.OK(entity);
@@ -60,6 +62,7 @@ public class ReviewService {
     }
 
     public Header<ReviewEntity> approveReview(ReviewUpdateDto reviewUpdateDto) {
+        // To do : Null일 경우 예외처리
         ReviewEntity entity = reviewUpdateDto.toEntity();
         if(entity.getApproveYn() == 0){
            entity.setApproveYn(1);

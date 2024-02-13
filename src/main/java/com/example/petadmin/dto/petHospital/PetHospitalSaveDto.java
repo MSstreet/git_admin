@@ -2,6 +2,7 @@ package com.example.petadmin.dto.petHospital;
 
 import com.example.petadmin.entity.NoticeEntity;
 import com.example.petadmin.entity.PetHospitalEntity;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -14,10 +15,14 @@ public class PetHospitalSaveDto {
 
     private BigDecimal hosLatitude;
     private BigDecimal hosLongitude;
-    private String hospitalAddr;
+    @NotBlank(message = "병원 이름을 입력하세요")
     private String hospitalName;
+    @NotBlank(message = "전화번호를 입력하세요")
     private String hospitalNum;
     private String operState;
+    @NotBlank(message = "주소를 입력하세요")
+    private String hospitalAddr;
+    @NotBlank(message = "시군명을 입력하세요")
     private String sigunName;
 
     public PetHospitalEntity toEntity(){

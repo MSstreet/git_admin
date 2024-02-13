@@ -1,4 +1,4 @@
-package com.example.petadmin.dto;
+package com.example.petadmin.dto.notice;
 
 import com.example.petadmin.entity.NoticeEntity;
 import jakarta.validation.constraints.NotBlank;

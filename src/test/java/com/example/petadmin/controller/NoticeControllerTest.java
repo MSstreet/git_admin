@@ -1,9 +1,8 @@
 package com.example.petadmin.controller;
 
 import com.example.petadmin.db.NoticeBoardMapper;
-import com.example.petadmin.dto.NoticeSaveDto;
+import com.example.petadmin.dto.notice.NoticeSaveDto;
 import com.example.petadmin.entity.NoticeEntity;
-import com.example.petadmin.service.NoticeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.util.HashMap;
 import java.util.List;
