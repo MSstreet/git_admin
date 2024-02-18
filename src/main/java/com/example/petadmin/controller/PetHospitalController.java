@@ -1,7 +1,7 @@
 package com.example.petadmin.controller;
 
 import com.example.petadmin.dto.petHospital.PetHospitalSaveDto;
-import com.example.petadmin.entity.PetHospitalEntity;
+import com.example.petadmin.entity.petHospital.PetHospitalEntity;
 import com.example.petadmin.service.PetHospitalService;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Search;
@@ -23,7 +23,8 @@ public class PetHospitalController {
     private final PetHospitalService petHospitalService;
 
     @GetMapping("/list")
-    public Header<List<PetHospitalEntity>> getPetHosList(@RequestParam(name ="page", defaultValue = "0") int page, @RequestParam(name = "size", defaultValue = "10") int size, Search search){
+    public Header<List<PetHospitalEntity>> getPetHosList(@RequestParam(name ="page", defaultValue = "0") int page,
+                                                         @RequestParam(name = "size", defaultValue = "10") int size, Search search){
         return petHospitalService.getPetHosList(page,size,search);
     }
 
@@ -37,9 +38,9 @@ public class PetHospitalController {
         return petHospitalService.insertPetHos(petHospitalSaveDto);
     }
 
-    @PatchMapping("/update")
-    public Header<PetHospitalEntity> updatePetHos(@RequestBody PetHospitalSaveDto petHospitalSaveDto){
-        return petHospitalService.updatePetHos(petHospitalSaveDto);
+    @PatchMapping("/update/{id}")
+    public Header<PetHospitalEntity> updatePetHos(@PathVariable Long id,@RequestBody PetHospitalSaveDto petHospitalSaveDto){
+        return petHospitalService.updatePetHos(id,petHospitalSaveDto);
     }
 
     @DeleteMapping("/{idx}")

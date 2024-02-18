@@ -1,6 +1,6 @@
 package com.example.petadmin.db;
 
-import com.example.petadmin.entity.UserEntity;
+import com.example.petadmin.entity.user.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;

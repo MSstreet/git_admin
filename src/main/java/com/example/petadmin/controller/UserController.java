@@ -1,7 +1,7 @@
 package com.example.petadmin.controller;
 
 import com.example.petadmin.dto.user.UserSaveDto;
-import com.example.petadmin.entity.UserEntity;
+import com.example.petadmin.entity.user.UserEntity;
 import com.example.petadmin.service.UserService;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Search;

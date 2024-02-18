@@ -1,25 +1,33 @@
 package com.example.petadmin.controller.exception;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.validation.BindException;
-import org.springframework.validation.BindingResult;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Getter
-public abstract class BaseException extends RuntimeException  {
+@AllArgsConstructor
+public class BaseException extends RuntimeException  {
 
-    public BaseException(String message){
-        super(message);
+    private ErrorCode errorCode;
+    private String message;
+
+
+    public BaseException(ErrorCode errorCode) {
+        this.errorCode = errorCode;
+        this.message = null;
     }
 
-    public abstract int getStatusCode();
+    @Override
+    public String getMessage() {
+        if (message == null) {
+            return errorCode.getMessage();
+        } else {
+            return String.format("%s. %s", errorCode.getMessage(), message);
+        }
 
-    public final Map<String, String> validation = new HashMap<>();
-    public void addValidation(String fieldName, String message) {
-        validation.put(fieldName, message);
     }
 
 }

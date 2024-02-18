@@ -1,9 +1,12 @@
 package com.example.petadmin.service;
 
-import com.example.petadmin.controller.exception.notice.NoticeNotFound;
+import com.example.petadmin.controller.exception.BaseException;
+import com.example.petadmin.controller.exception.ErrorCode;
 import com.example.petadmin.db.NoticeBoardMapper;
 import com.example.petadmin.dto.notice.NoticeSaveDto;
-import com.example.petadmin.entity.NoticeEntity;
+import com.example.petadmin.dto.notice.NoticeUpdateDto;
+import com.example.petadmin.entity.notice.NoticeEntity;
+import com.example.petadmin.entity.notice.NoticeEditor;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Pagination;
 import com.example.petadmin.util.Search;
@@ -12,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 
 @RequiredArgsConstructor
@@ -40,12 +42,15 @@ public class NoticeService {
                 size,
                 10
         );
-
         return Header.OK(noticeList, pagination);
     }
 
     public Header<NoticeEntity> getNoticeDetail(Long idx) {
-        // Null일 경우 예외처리
+        NoticeEntity noticeEntity = noticeBoardMapper.getNoticeDetail(idx);
+        if(noticeEntity == null){
+            throw new BaseException(ErrorCode.NOTICE_NOT_FOUND, String.format("notice id %s is not found",idx));
+        }
+
         return Header.OK(noticeBoardMapper.getNoticeDetail(idx));
     }
 
@@ -58,16 +63,23 @@ public class NoticeService {
         }
     }
 
-    public Header<NoticeEntity> updateNotice(Long idx,NoticeSaveDto noticeSaveDto) {
+    public Header<NoticeEntity> updateNotice(Long idx, NoticeUpdateDto noticeUpdateDto) {
         NoticeEntity noticeEntity = noticeBoardMapper.getNoticeDetail(idx);
-
         if(noticeEntity == null){
-            // NoticeNotFound 예외처리
+            throw new BaseException(ErrorCode.NOTICE_NOT_FOUND, String.format("notice id %s is not found",idx));
         }
+        NoticeEditor.NoticeEditorBuilder editorBuilder = noticeEntity.toEditor();
 
-        NoticeEntity entity = noticeSaveDto.toEntity();
-        if (noticeBoardMapper.updateNotice(entity) > 0) {
-            return Header.OK(entity);
+        NoticeEditor insNoticeEditor = editorBuilder.title(noticeUpdateDto.getTitle())
+                .contents(noticeUpdateDto.getContents())
+                .displayYn(noticeUpdateDto.getDisplayYn())
+                .updatedBy(noticeUpdateDto.getUpdatedBy())
+                .build();
+
+        noticeEntity.edit(insNoticeEditor);
+
+        if (noticeBoardMapper.updateNotice(noticeEntity) > 0) {
+            return Header.OK(noticeEntity);
         } else {
             return Header.ERROR("ERROR");
         }
@@ -75,9 +87,8 @@ public class NoticeService {
 
     public Header<String> deleteNotice(Long idx) {
         NoticeEntity noticeEntity = noticeBoardMapper.getNoticeDetail(idx);
-
         if(noticeEntity == null){
-            // NoticeNotFound 예외처리
+            throw new BaseException(ErrorCode.NOTICE_NOT_FOUND, String.format("notice id %s is not found",idx));
         }
         if (noticeBoardMapper.deleteNotice(idx) > 0) {
             return Header.OK();

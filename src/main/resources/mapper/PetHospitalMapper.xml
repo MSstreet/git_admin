@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/schema/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.petadmin.db.PetHospitalMapper">
-    <select id="getPetHosList" resultType="com.example.petadmin.entity.PetHospitalEntity">
+    <select id="getPetHosList" resultType="com.example.petadmin.entity.petHospital.PetHospitalEntity">
              select
                      hospital_id
                    , hospital_addr
@@ -24,7 +24,7 @@
               LIMIT #{page}, #{size}
     </select>
 
-    <select id="getPetHos" parameterType="Long" resultType="com.example.petadmin.entity.PetHospitalEntity">
+    <select id="getPetHos" parameterType="Long" resultType="com.example.petadmin.entity.petHospital.PetHospitalEntity">
         SELECT
                  hospital_id
                , hos_latitude
@@ -38,7 +38,7 @@
          WHERE  hospital_id = {hospitalId}
     </select>
 
-    <insert id="insertPetHos" parameterType="com.example.petadmin.entity.PetHospitalEntity" keyProperty="hospitalId" useGeneratedKeys="true">
+    <insert id="insertPetHos" parameterType="com.example.petadmin.entity.petHospital.PetHospitalEntity" keyProperty="hospitalId" useGeneratedKeys="true">
         INSERT INTO pet_hospital_entity
                   (
                      hos_latitude
@@ -61,7 +61,7 @@
                   )
     </insert>
 
-    <update id="updatePetHos" parameterType="com.example.petadmin.entity.PetHospitalEntity">
+    <update id="updatePetHos" parameterType="com.example.petadmin.entity.petHospital.PetHospitalEntity">
         UPDATE
                  pet_hospital_entity
            SET

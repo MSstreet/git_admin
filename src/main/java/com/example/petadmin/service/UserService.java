@@ -2,7 +2,7 @@ package com.example.petadmin.service;
 
 import com.example.petadmin.db.UserMapper;
 import com.example.petadmin.dto.user.UserSaveDto;
-import com.example.petadmin.entity.UserEntity;
+import com.example.petadmin.entity.user.UserEntity;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Pagination;
 import com.example.petadmin.util.Search;

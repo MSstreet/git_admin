@@ -2,7 +2,7 @@ package com.example.petadmin.controller;
 
 import com.example.petadmin.db.NoticeBoardMapper;
 import com.example.petadmin.dto.notice.NoticeSaveDto;
-import com.example.petadmin.entity.NoticeEntity;
+import com.example.petadmin.entity.notice.NoticeEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -136,29 +136,39 @@ class NoticeControllerTest {
                 .andDo(print());
     }
 
-//    @Test
-//    @DisplayName("공지사항 수정")
-//    void test5() throws Exception{
-//        // given
-//        NoticeEntity noticeEntity = NoticeEntity.builder()
-//                .title("수정전공지")
-//                .contents("수정전")
-//                .build();
-//
-//        noticeBoardMapper.insertNotice(noticeEntity);
-//
-//        NoticeEntity noticeEntityEdit = NoticeEntity.builder()
-//                .title("수정후공지")
-//                .contents("수정후")
-//                .build();
-//
-//        // expected
-//        mockMvc.perform(patch("/notice", noticeEntity.getNoticeIdx())
-//                        .contentType(APPLICATION_JSON)
-//                        .content(objectMapper.writeValueAsString(noticeEntityEdit)))
-//                .andExpect(status().isOk())
-//                .andDo(print());
-//    }
+    @Test
+    @DisplayName("공지사항 수정")
+    void test5() throws Exception{
+        // given
+        NoticeEntity noticeEntity = NoticeEntity.builder()
+                .title("수정전공지")
+                .contents("수정전")
+                .build();
+
+        noticeBoardMapper.insertNotice(noticeEntity);
+
+        NoticeEntity noticeEntityEdit = NoticeEntity.builder()
+                .title("수정후공지")
+                .contents("수정후")
+                .build();
+
+        // expected
+        mockMvc.perform(patch("/notice/update/{idx}", noticeEntity.getNoticeIdx())
+                        .contentType(APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(noticeEntityEdit)))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 게시글 조회")
+    void test9() throws Exception {
+        // expected
+        mockMvc.perform(delete("/notice/{idx}", 1000L)
+                        .contentType(APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andDo(print());
+    }
 
 }
 

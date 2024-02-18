@@ -1,7 +1,6 @@
 package com.example.petadmin.dto.user;
 
-import com.example.petadmin.entity.NoticeEntity;
-import com.example.petadmin.entity.UserEntity;
+import com.example.petadmin.entity.user.UserEntity;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

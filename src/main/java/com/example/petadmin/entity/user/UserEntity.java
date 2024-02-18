@@ -1,4 +1,4 @@
-package com.example.petadmin.entity;
+package com.example.petadmin.entity.user;
 
 import jakarta.persistence.Table;
 import lombok.*;

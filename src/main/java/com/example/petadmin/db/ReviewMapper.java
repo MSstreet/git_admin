@@ -1,7 +1,6 @@
 package com.example.petadmin.db;
 
-import com.example.petadmin.dto.review.ReviewUpdateDto;
-import com.example.petadmin.entity.ReviewEntity;
+import com.example.petadmin.entity.review.ReviewEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;

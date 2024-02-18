@@ -1,6 +1,6 @@
 package com.example.petadmin.dto.notice;
 
-import com.example.petadmin.entity.NoticeEntity;
+import com.example.petadmin.entity.notice.NoticeEntity;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
@@ -10,7 +10,6 @@ import lombok.*;
 @Builder
 public class NoticeSaveDto {
 
-    private Long noticeIdx;   // 공지사항 고유번호
     @NotBlank(message = "타이틀을 입력하세요")
     private String title;     // 제목
     @NotBlank(message = "콘텐츠를 입력하세요")
@@ -19,7 +18,6 @@ public class NoticeSaveDto {
 
     public NoticeEntity toEntity(){
         return NoticeEntity.builder()
-                .noticeIdx(noticeIdx)
                 .title(title)
                 .contents(contents)
                 .displayYn(displayYn)

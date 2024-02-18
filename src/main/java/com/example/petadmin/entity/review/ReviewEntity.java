@@ -1,6 +1,5 @@
-package com.example.petadmin.entity;
+package com.example.petadmin.entity.review;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.*;
 
