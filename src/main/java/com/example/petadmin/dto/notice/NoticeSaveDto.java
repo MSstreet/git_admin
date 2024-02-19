@@ -10,9 +10,9 @@ import lombok.*;
 @Builder
 public class NoticeSaveDto {
 
-    @NotBlank(message = "타이틀을 입력하세요")
+    @NotBlank(message = "타이틀을 입력하세요.")
     private String title;     // 제목
-    @NotBlank(message = "콘텐츠를 입력하세요")
+    @NotBlank(message = "콘텐츠를 입력하세요.")
     private String contents;  // 내용
     private int displayYn;    // 게시여부
 

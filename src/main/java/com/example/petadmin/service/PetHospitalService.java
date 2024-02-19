@@ -2,7 +2,7 @@ package com.example.petadmin.service;
 
 import com.example.petadmin.db.PetHospitalMapper;
 import com.example.petadmin.dto.petHospital.PetHospitalSaveDto;
-import com.example.petadmin.entity.PetHospitalEntity;
+import com.example.petadmin.entity.petHospital.PetHospitalEntity;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Pagination;
 import com.example.petadmin.util.Search;
@@ -54,8 +54,11 @@ public class PetHospitalService {
         }
     }
 
-    public Header<PetHospitalEntity> updatePetHos(PetHospitalSaveDto petHospitalSaveDto){
-        // To do : Null일 경우 예외처리
+    public Header<PetHospitalEntity> updatePetHos(Long id,PetHospitalSaveDto petHospitalSaveDto){
+        PetHospitalEntity petHospitalEntity = petHospitalMapper.getPetHos(id);
+
+
+
         PetHospitalEntity entity = petHospitalSaveDto.toEntity();
         if(petHospitalMapper.updatePetHos(entity) > 0) {
             return Header.OK(entity);

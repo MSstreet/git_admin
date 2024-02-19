@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
+import java.util.Map;
+
 @Getter
 @RequiredArgsConstructor
 public enum ErrorCode {
@@ -13,4 +15,5 @@ public enum ErrorCode {
 
     private final HttpStatus status;
     private final String message;
+
 }

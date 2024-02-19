@@ -56,6 +56,7 @@ public class NoticeService {
 
     public Header<NoticeEntity> insertNotice(NoticeSaveDto noticeSaveDto) {
         NoticeEntity entity = noticeSaveDto.toEntity();
+
         if (noticeBoardMapper.insertNotice(entity) > 0) {
             return Header.OK(entity);
         } else {

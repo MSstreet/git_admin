@@ -8,7 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "review_entity")
 public class ReviewEntity {
 
     private Long reviewIdx;

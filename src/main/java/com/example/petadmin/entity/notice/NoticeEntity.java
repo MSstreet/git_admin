@@ -8,7 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "notice_board")
 public class NoticeEntity {
 
     private Long noticeIdx;         // 공지사항 고유번호

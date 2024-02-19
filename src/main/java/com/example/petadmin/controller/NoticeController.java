@@ -9,6 +9,7 @@ import com.example.petadmin.util.Search;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,12 +35,26 @@ public class NoticeController {
     }
 
     @PostMapping("/insert")
-    public Header<NoticeEntity> insertNotice(@RequestBody @Valid NoticeSaveDto noticeSaveDto) {
+    public Header<NoticeEntity> insertNotice(@RequestBody @Valid NoticeSaveDto noticeSaveDto, BindingResult br) {
+
+        if (br.hasErrors()){
+            String errorName = br.getAllErrors().get(0).getDefaultMessage();
+            log.error(errorName);
+            return Header.ERROR(errorName);
+        }
+
         return noticeService.insertNotice(noticeSaveDto);
     }
 
     @PatchMapping("/update/{idx}")
-    public Header<NoticeEntity> updateNotice(@PathVariable Long idx,@RequestBody NoticeUpdateDto noticeUpdateDto){
+    public Header<NoticeEntity> updateNotice(@PathVariable Long idx,@RequestBody @Valid NoticeUpdateDto noticeUpdateDto, BindingResult br){
+
+        if (br.hasErrors()){
+            String errorName = br.getAllErrors().get(0).getDefaultMessage();
+            log.error(errorName);
+            return Header.ERROR(errorName);
+        }
+
         return noticeService.updateNotice(idx,noticeUpdateDto);
     }
 

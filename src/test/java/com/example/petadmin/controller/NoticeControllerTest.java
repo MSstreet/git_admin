@@ -56,10 +56,27 @@ class NoticeControllerTest {
         mockMvc.perform(post("/notice/insert")
                         .contentType(APPLICATION_JSON)
                         .content(json))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.code").value("400"))
-                .andExpect(jsonPath("$.message").value("잘못된 요청입니다."))
-                .andExpect(jsonPath("$.validation.title").value("타이틀을 입력하세요."))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.description").value("타이틀을 입력하세요."))
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("수정_title값은필수")
+    void 수정_title값은필수() throws Exception {
+        // given
+        NoticeSaveDto request = NoticeSaveDto.builder()
+                .contents("내용입니다.")
+                .build();
+
+        String json = objectMapper.writeValueAsString(request);
+
+        // expected
+        mockMvc.perform(post("/notice/insert")
+                        .contentType(APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.description").value("타이틀을 입력하세요."))
                 .andDo(print());
     }
 

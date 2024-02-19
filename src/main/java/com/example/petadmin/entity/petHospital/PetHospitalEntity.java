@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "pet_hospital_entity")
 public class PetHospitalEntity {
 
     private Long hospitalId;
