@@ -8,7 +8,6 @@ import com.example.petadmin.util.Search;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,19 +34,12 @@ public class PetHospitalController {
     }
 
     @PostMapping("/insert")
-    public Header<PetHospitalEntity> insertPetHos(@RequestBody @Valid PetHospitalSaveDto petHospitalSaveDto, BindingResult br){
-
-        if (br.hasErrors()){
-            String errorName = br.getAllErrors().get(0).getDefaultMessage();
-            log.error(errorName);
-            return Header.ERROR(errorName);
-        }
-
+    public Header<PetHospitalEntity> insertPetHos(@RequestBody @Valid PetHospitalSaveDto petHospitalSaveDto){
         return petHospitalService.insertPetHos(petHospitalSaveDto);
     }
 
     @PatchMapping("/update/{id}")
-    public Header<PetHospitalEntity> updatePetHos(@PathVariable Long id,@RequestBody PetHospitalSaveDto petHospitalSaveDto){
+    public Header<PetHospitalEntity> updatePetHos(@PathVariable Long id, @RequestBody PetHospitalSaveDto petHospitalSaveDto){
         return petHospitalService.updatePetHos(id,petHospitalSaveDto);
     }
 

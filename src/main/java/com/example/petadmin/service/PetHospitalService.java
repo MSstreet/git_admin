@@ -1,7 +1,10 @@
 package com.example.petadmin.service;
 
+import com.example.petadmin.controller.exception.BaseException;
+import com.example.petadmin.controller.exception.ErrorCode;
 import com.example.petadmin.db.PetHospitalMapper;
 import com.example.petadmin.dto.petHospital.PetHospitalSaveDto;
+import com.example.petadmin.entity.petHospital.PetHosEditor;
 import com.example.petadmin.entity.petHospital.PetHospitalEntity;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Pagination;
@@ -41,7 +44,11 @@ public class PetHospitalService {
         return Header.OK(petHosList, pagination);
     }
     public Header<PetHospitalEntity> getPetHos(Long idx) {
-        // To do : Null일 경우 예외처리
+        PetHospitalEntity petHospitalEntity = petHospitalMapper.getPetHos(idx);
+        if(petHospitalEntity == null){
+            throw new BaseException(ErrorCode.PET_HOSPITAL_NOT_FOUND, String.format("pet hospital id %s is not found", idx));
+        }
+
         return Header.OK(petHospitalMapper.getPetHos(idx));
     }
 
@@ -54,21 +61,38 @@ public class PetHospitalService {
         }
     }
 
-    public Header<PetHospitalEntity> updatePetHos(Long id,PetHospitalSaveDto petHospitalSaveDto){
-        PetHospitalEntity petHospitalEntity = petHospitalMapper.getPetHos(id);
+    public Header<PetHospitalEntity> updatePetHos(Long idx,PetHospitalSaveDto petHospitalSaveDto){
+        PetHospitalEntity petHospitalEntity = petHospitalMapper.getPetHos(idx);
+        if(petHospitalEntity == null){
+            throw new BaseException(ErrorCode.PET_HOSPITAL_NOT_FOUND, String.format("pet hospital id %s is not found", idx));
+        }
 
+        PetHosEditor.PetHosEditorBuilder editorBuilder = petHospitalEntity.toEditor();
 
+        PetHosEditor petHosEditor = editorBuilder.hosLatitude(petHospitalSaveDto.getHosLatitude())
+                .hosLongitude(petHospitalSaveDto.getHosLongitude())
+                .sigunName(petHospitalSaveDto.getSigunName())
+                .hospitalNum(petHospitalSaveDto.getHospitalNum())
+                .hospitalName(petHospitalSaveDto.getHospitalName())
+                .operState(petHospitalSaveDto.getOperState())
+                .sigunName(petHospitalSaveDto.getSigunName())
+                .build();
 
-        PetHospitalEntity entity = petHospitalSaveDto.toEntity();
-        if(petHospitalMapper.updatePetHos(entity) > 0) {
-            return Header.OK(entity);
+        petHospitalEntity.edit(petHosEditor);
+
+        if(petHospitalMapper.updatePetHos(petHospitalEntity) > 0) {
+            return Header.OK(petHospitalEntity);
         }else{
             return Header.ERROR("ERROR");
         }
     }
 
     public Header<String> deletePetHos(Long idx){
-        // To do : Null일 경우 예외처리
+        PetHospitalEntity petHospitalEntity = petHospitalMapper.getPetHos(idx);
+        if(petHospitalEntity == null){
+            throw new BaseException(ErrorCode.PET_HOSPITAL_NOT_FOUND, String.format("pet hospital id %s is not found", idx));
+        }
+
         if (petHospitalMapper.deletePetHos(idx) > 0){
             return Header.OK();
         }else{
