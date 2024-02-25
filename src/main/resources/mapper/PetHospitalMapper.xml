@@ -20,8 +20,22 @@
                      AND hospital_num LIKE CONCAT('%', #{sv}, '%')
                 </if>
            </if>
-           ORDER BY hospital_name desc;
+           ORDER BY hospital_name desc
               LIMIT #{page}, #{size}
+    </select>
+
+    <select id="getPetHosListCount" parameterType="Map" resultType="Int">
+        SELECT COUNT(hospital_id)
+        FROM pet_hospital_entity
+        WHERE 1=1
+        <if test="sk != '' || sk != null">
+            <if test="sk == 'hospitalName'">
+                AND hospital_name LIKE CONCAT('%', #{sv}, '%')
+            </if>
+            <if test="sk == 'hospitalNum'">
+                AND hospital_num LIKE CONCAT('%', #{sv}, '%')
+            </if>
+        </if>
     </select>
 
     <select id="getPetHos" parameterType="Long" resultType="com.example.petadmin.entity.petHospital.PetHospitalEntity">
@@ -32,33 +46,57 @@
                , hospital_addr
                , hospital_name
                , hospital_num
-               , oper_state
                , sigun_name
+               , oper_state
           FROM  pet_hospital_entity
-         WHERE  hospital_id = {hospitalId}
+         WHERE  hospital_id = #{hospitalId}
     </select>
 
     <insert id="insertPetHos" parameterType="com.example.petadmin.entity.petHospital.PetHospitalEntity" keyProperty="hospitalId" useGeneratedKeys="true">
         INSERT INTO pet_hospital_entity
                   (
-                     hos_latitude
-                    ,hos_longitude
+                     hos_longitude
+                    ,hos_latitude
                     ,hospital_addr
                     ,hospital_name
                     ,hospital_num
-                    ,oper_state
                     ,sigun_name
+                    ,oper_state
                   )
              VALUES
                   (
-                    {hosLatitude}
-                   ,{hosLongitude}
-                   ,{hospitalAddr}
-                   ,{hospitalName}
-                   ,{hospitalNum}
-                   ,{operState}
-                   ,{sigunName}
+                    #{hosLongitude}
+                   ,#{hosLatitude}
+                   ,#{hospitalAddr}
+                   ,#{hospitalName}
+                   ,#{hospitalNum}
+                   ,#{sigunName}
+                   ,#{operState}
                   )
+    </insert>
+
+    <insert id="insertPetHosList" parameterType="java.util.List" >
+        INSERT INTO   pet_hospital_entity
+                   (
+                      hos_longitude
+                     ,hos_latitude
+                     ,hospital_addr
+                     ,hospital_name
+                     ,hospital_num
+                     ,sigun_name
+                     ,oper_state
+                   ) VALUES
+        <foreach collection="list" item="item" separator=",">
+                   (
+                      #{hosLongitude}
+                     ,#{hosLatitude}
+                     ,#{hospitalAddr}
+                     ,#{hospitalName}
+                     ,#{hospitalNum}
+                     ,#{sigunName}
+                     ,#{operState}
+                  )
+        </foreach>
     </insert>
 
     <update id="updatePetHos" parameterType="com.example.petadmin.entity.petHospital.PetHospitalEntity">
@@ -82,6 +120,10 @@
                 delete_yn = 1
          WHERE  hospital_id = #{hospitalId}
     </update>
+
+    <delete id="deleteAllPetHos">
+        DELETE FROM pet_hospital_entity
+    </delete>
 
 </mapper>
 

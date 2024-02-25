@@ -1,5 +1,6 @@
 package com.example.petadmin.db;
 
+import com.example.petadmin.entity.notice.NoticeEntity;
 import com.example.petadmin.entity.petHospital.PetHospitalEntity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,6 +13,8 @@ public interface PetHospitalMapper {
 
     int getPetHosListCount(HashMap<String, Object> paramMap);
 
+    int insertPetHosList(List<PetHospitalEntity> petHospitalEntities);
+
     PetHospitalEntity getPetHos(Long idx);
 
     int insertPetHos(PetHospitalEntity petHospitalEntity);
@@ -19,4 +22,6 @@ public interface PetHospitalMapper {
     int updatePetHos(PetHospitalEntity petHospitalEntity);
 
     int deletePetHos(Long idx);
+
+    void deleteAllPetHos();
 }

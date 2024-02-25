@@ -179,6 +179,28 @@ class NoticeControllerTest {
     }
 
     @Test
+    @DisplayName("공지사항 삭제")
+    void 삭제테스트() throws Exception{
+        // given
+        NoticeEntity noticeEntity = NoticeEntity.builder()
+                .title("수정전공지")
+                .contents("수정전")
+                .build();
+
+        noticeBoardMapper.insertNotice(noticeEntity);
+
+        // expected
+        mockMvc.perform(delete("/notice/{idx}", noticeEntity.getNoticeIdx())
+                        .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andDo(print());
+
+        NoticeEntity notice = noticeBoardMapper.getNoticeDetail(noticeEntity.getNoticeIdx());
+        assertEquals(1,notice.getDeleteYn());
+
+    }
+
+    @Test
     @DisplayName("존재하지 않는 게시글 조회")
     void test9() throws Exception {
         // expected

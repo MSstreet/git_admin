@@ -16,8 +16,9 @@ public class PetHospitalEntity {
     private String hospitalAddr;
     private String hospitalName;
     private String hospitalNum;
-    private String operState;
     private String sigunName;
+    private String operState;
+    private int deleteYn;
 
     public PetHosEditor.PetHosEditorBuilder toEditor(){
         return PetHosEditor.builder()

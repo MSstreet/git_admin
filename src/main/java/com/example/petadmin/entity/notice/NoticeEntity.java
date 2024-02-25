@@ -16,6 +16,7 @@ public class NoticeEntity {
     private int displayYn;          // 게시여부
     private String createdBy;       // 생성자
     private String updatedBy;       // 수정자
+    private int deleteYn;
 
     public NoticeEditor.NoticeEditorBuilder toEditor(){
         return NoticeEditor.builder()

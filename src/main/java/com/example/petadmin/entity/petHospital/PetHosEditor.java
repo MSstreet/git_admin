@@ -13,8 +13,8 @@ public class PetHosEditor {
     private String hospitalAddr;
     private String hospitalName;
     private String hospitalNum;
-    private String operState;
     private String sigunName;
+    private String operState;
 
     @Builder
     public PetHosEditor(BigDecimal hosLatitude, BigDecimal hosLongitude, String hospitalAddr,
