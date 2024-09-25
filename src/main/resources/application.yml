@@ -1,12 +1,12 @@
 server:
-  port: 8080
+  port: 8082
 
 spring:
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:mariadb://localhost:3306/new_pet_db?serverTimezone=Asia/Seoul
+    url: jdbc:log4jdbc:mariadb://localhost:3306/pet_test?serverTimezone=Asia/Seoul
     username : root
-    password: lms*!$Ms0828
+    password: mySql*!$Ms0828
 
 mybatis:
   mapper-locations: classpath:mapper/**.xml

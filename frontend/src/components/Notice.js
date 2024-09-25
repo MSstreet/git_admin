@@ -11,7 +11,7 @@ const Notice = ({ noticeIdx, title, contents, createdBy }) => {
     };
     const deleteNotice = async () => {
         if (window.confirm('공지글을 삭제하시겠습니까?')) {
-            await axios.delete(`//localhost:8080/notice/${noticeIdx}`).then((res) => {
+            await axios.delete(`//localhost:8082/notice/${noticeIdx}`).then((res) => {
                 alert('삭제되었습니다.');
                 navigate('/notice');
             });

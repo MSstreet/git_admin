@@ -22,7 +22,7 @@ const NoticeWrite = () => {
     };
 
     const saveNotice = async () => {
-        await axios.post(`//localhost:8080/notice/insert`, notice).then((res) => {
+        await axios.post(`//localhost:8082/notice/insert`, notice).then((res) => {
             alert('등록되었습니다.');
             navigate('/notice');
         });

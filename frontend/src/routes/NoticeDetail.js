@@ -8,7 +8,7 @@ const NoticeDetail = () => {
     const [loading, setLoading] = useState(true);
     const [notice, setNotice] = useState({});
     const getNotice = async () => {
-        const resp = await (await axios.get(`//localhost:8080/notice/${noticeIdx}`)).data;
+        const resp = await (await axios.get(`//localhost:8082/notice/${noticeIdx}`)).data;
         setNotice(resp.data);
         setLoading(false);
     };
@@ -16,8 +16,6 @@ const NoticeDetail = () => {
     useEffect(() => {
         getNotice();
     }, []);
-
-
 
     return (
         <div>

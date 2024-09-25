@@ -26,12 +26,12 @@ const NoticeUpdate = () => {
     };
 
     const getNotice = async () => {
-        const resp = await (await axios.get(`//localhost:8080/notice/${noticeIdx}`)).data;
+        const resp = await (await axios.get(`//localhost:8082/notice/${noticeIdx}`)).data;
         setNotice(resp.data);
     };
 
     const updateNotice = async () => {
-        await axios.patch(`//localhost:8080/notice/update`, notice).then((res) => {
+        await axios.patch(`//localhost:8082/notice/update`, notice).then((res) => {
             alert('수정되었습니다.');
             navigate('/notice/' + noticeIdx);
         });

@@ -28,9 +28,9 @@ public class NoticeController {
         return noticeService.getNoticeList(page, size, search);
     }
 
-    @GetMapping("/{idx}")
-    public Header<NoticeEntity> getNoticeDetail(@PathVariable Long idx) {
-        return noticeService.getNoticeDetail(idx);
+    @GetMapping("/{noticeIdx}")
+    public Header<NoticeEntity> getNoticeDetail(@PathVariable("noticeIdx") Long noticeIdx) {
+        return noticeService.getNoticeDetail(noticeIdx);
     }
 
     @PostMapping("/insert")
@@ -38,9 +38,9 @@ public class NoticeController {
         return noticeService.insertNotice(noticeSaveDto);
     }
 
-    @PatchMapping("/update/{idx}")
-    public Header<NoticeEntity> updateNotice(@PathVariable Long idx,@RequestBody @Valid NoticeUpdateDto noticeUpdateDto){
-        return noticeService.updateNotice(idx,noticeUpdateDto);
+    @PatchMapping("/update")
+    public Header<NoticeEntity> updateNotice(@RequestBody @Valid NoticeUpdateDto noticeUpdateDto){
+        return noticeService.updateNotice(noticeUpdateDto);
     }
 
     @DeleteMapping("/{idx}")

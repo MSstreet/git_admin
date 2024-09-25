@@ -64,23 +64,30 @@ public class NoticeService {
         }
     }
 
-    public Header<NoticeEntity> updateNotice(Long idx, NoticeUpdateDto noticeUpdateDto) {
-        NoticeEntity noticeEntity = noticeBoardMapper.getNoticeDetail(idx);
-        if(noticeEntity == null){
-            throw new BaseException(ErrorCode.NOTICE_NOT_FOUND, String.format("notice id %s is not found",idx));
-        }
-        NoticeEditor.NoticeEditorBuilder editorBuilder = noticeEntity.toEditor();
+    public Header<NoticeEntity> updateNotice(NoticeUpdateDto noticeUpdateDto) {
+//        NoticeEntity noticeEntity = noticeBoardMapper.getNoticeDetail(idx);
+//        if(noticeEntity == null){
+//            throw new BaseException(ErrorCode.NOTICE_NOT_FOUND, String.format("notice id %s is not found",idx));
+//        }
+//        NoticeEditor.NoticeEditorBuilder editorBuilder = noticeEntity.toEditor();
 
-        NoticeEditor insNoticeEditor = editorBuilder.title(noticeUpdateDto.getTitle())
-                .contents(noticeUpdateDto.getContents())
-                .displayYn(noticeUpdateDto.getDisplayYn())
-                .updatedBy(noticeUpdateDto.getUpdatedBy())
-                .build();
+//        NoticeEditor insNoticeEditor = editorBuilder.title(noticeUpdateDto.getTitle())
+//                .contents(noticeUpdateDto.getContents())
+//                .displayYn(noticeUpdateDto.getDisplayYn())
+//                .updatedBy(noticeUpdateDto.getUpdatedBy())
+//                .build();
 
-        noticeEntity.edit(insNoticeEditor);
+//        noticeEntity.edit(insNoticeEditor);
+//
+//        if (noticeBoardMapper.updateNotice(noticeEntity) > 0) {
+//            return Header.OK(noticeEntity);
+//        } else {
+//            return Header.ERROR("ERROR");
+//        }
 
-        if (noticeBoardMapper.updateNotice(noticeEntity) > 0) {
-            return Header.OK(noticeEntity);
+        NoticeEntity entity = noticeUpdateDto.toEntity();
+        if (noticeBoardMapper.updateNotice(entity) > 0) {
+            return Header.OK(entity);
         } else {
             return Header.ERROR("ERROR");
         }
