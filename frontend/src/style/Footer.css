@@ -1,0 +1,7 @@
+.footer {
+    background-color: #333; /* 배경색 */
+    color: white;
+    text-align: center;
+    padding: 5px; /* 기존보다 줄인 padding */
+    margin-top: auto; /* 필요시 */
+}

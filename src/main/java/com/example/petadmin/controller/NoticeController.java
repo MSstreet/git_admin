@@ -44,7 +44,7 @@ public class NoticeController {
     }
 
     @DeleteMapping("/{idx}")
-    public Header<String> deleteNotice(@PathVariable Long idx) {
+    public Header<String> deleteNotice(@PathVariable("idx") Long idx) {
         return noticeService.deleteNotice(idx);
     }
 }

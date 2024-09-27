@@ -12,6 +12,8 @@
                , created_at
                , updated_at
           from   notice_board
+         WHERE 1=1
+           AND delete_yn = 0
       <if test="sk != '' || sk != null">
            <if test="sk == 'title'">
                 AND TITLE LIKE CONCAT('%', #{sv}, '%')
