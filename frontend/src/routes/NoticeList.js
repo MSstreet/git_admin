@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Link, useNavigate } from "react-router-dom";
+import '../style/NoticeList.css'
 
 const NoticeList = () => {
     const navigate = useNavigate();
@@ -23,17 +24,30 @@ const NoticeList = () => {
     }, []);
 
     return (
-        <div>
-            <ul>
-                {noticeList.map((notice) => (
-                    <li key={notice.noticeIdx}>
-                        <Link to={`/notice/${notice.noticeIdx}`}>{notice.title}</Link>
-                    </li>
-                ))}
-            </ul>
-            <div>
+        <div className="container">
+            <h1>공지사항</h1>
+            <div className="button-container">
                 <button onClick={moveToWrite}>글쓰기</button>
             </div>
+            <table className="board-table">
+                <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Title</th>
+                </tr>
+                </thead>
+                <tbody>
+                {noticeList.map((notice) => (
+                    <tr key={notice.noticeIdx}>
+                        <td>{notice.noticeIdx}</td>
+                        <td>
+                            <Link to={`/notice/${notice.noticeIdx}`}>{notice.title}</Link>
+                        </td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+
         </div>
     );
 };

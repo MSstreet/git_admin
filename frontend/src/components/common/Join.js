@@ -119,66 +119,6 @@ function Join() {
                 <br/>
                 <button>회원가입</button>
             </form>
-            <form className="signup-form" onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                />
-                {errors.email && <span className="error">{errors.email}</span>}
-                <input type="text" name="name" value={formData.name} onChange={handleChange}/>
-                {errors.name && <span className="error">{errors.name}</span>}
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                />
-                {errors.password && <span className="error">{errors.password}</span>}
-                <input
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                />
-                {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
-                <br/>
-                <button>회원가입</button>
-                <form className="signup-form" onSubmit={handleSubmit}>
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                    />
-                    {errors.email && <span className="error">{errors.email}</span>}
-                    <input type="text" name="name" value={formData.name} onChange={handleChange}/>
-                    {errors.name && <span className="error">{errors.name}</span>}
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                    />
-                    {errors.password && <span className="error">{errors.password}</span>}
-                    <input
-                        type="password"
-                        name="confirmPassword"
-                        placeholder="confirmPassword"
-                        value={formData.confirmPassword}
-                        onChange={handleChange}
-                    />
-                    {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
-                    <br/>
-                    <button>회원가입</button>
-                </form>
-            </form>
         </div>
 
     );

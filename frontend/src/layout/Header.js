@@ -6,14 +6,17 @@ import "../style/Nav.css"
 const Header = () => {
     return (
         <header>
-            <div className="navbar">
-                <Link className="navbarMenu" to="/">홈</Link>
-                &nbsp;&nbsp; | &nbsp;&nbsp;
-                <Link className="navbarMenu" to="/notice">게시판</Link>
-                &nbsp;&nbsp; | &nbsp;&nbsp;
-                <Link className="navbarMenu" to="/login">로그인</Link>
-            </div>
-        <hr></hr>
+            <nav id="nav2">
+                <a><Link to="/">logo</Link></a>
+                <ul>
+                    <li><Link to="/">홈</Link></li>
+                    &nbsp;&nbsp; | &nbsp;&nbsp;
+                    <li><Link to="/notice">게시판</Link></li>
+                    &nbsp;&nbsp; | &nbsp;&nbsp;
+                    <li><Link to="/login">로그인</Link></li>
+                </ul>
+            </nav>
+            <hr></hr>
         </header>
     );
 };
