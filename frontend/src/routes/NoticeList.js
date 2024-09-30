@@ -32,8 +32,12 @@ const NoticeList = () => {
             <table className="board-table">
                 <thead>
                 <tr>
-                    <th>Number</th>
-                    <th>Title</th>
+                    <th style={{width: "5%",}}>No</th>
+                    <th style={{width: "39%",}}>Title</th>
+                    <th style={{width: "5%",}}>Auth</th>
+                    <th style={{width: "5%",}}>CreateAt</th>
+                    <th style={{width: "5%",}}>UpdatedAt</th>
+                    <th style={{width: "2%",}}>Views</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,11 +47,13 @@ const NoticeList = () => {
                         <td>
                             <Link to={`/notice/${notice.noticeIdx}`}>{notice.title}</Link>
                         </td>
+                        <td>{notice.createdBy}</td>
+                        <td>{notice.createdAt}</td>
+                        <td>{notice.updatedAt}</td>
                     </tr>
                 ))}
                 </tbody>
             </table>
-
         </div>
     );
 };

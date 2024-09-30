@@ -11,7 +11,9 @@ const Header = () => {
                 <ul>
                     <li><Link to="/">홈</Link></li>
                     &nbsp;&nbsp; | &nbsp;&nbsp;
-                    <li><Link to="/notice">게시판</Link></li>
+                    <li><Link to="/notice">공지사항</Link></li>
+                    &nbsp;&nbsp; | &nbsp;&nbsp;
+                    <li><Link to="/review">리뷰</Link></li>
                     &nbsp;&nbsp; | &nbsp;&nbsp;
                     <li><Link to="/login">로그인</Link></li>
                 </ul>

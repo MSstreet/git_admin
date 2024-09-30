@@ -9,8 +9,8 @@
                , contents
                , display_yn
                , delete_yn
-               , created_at
-               , updated_at
+               , DATE_FORMAT(created_at,'%Y-%m-%d') AS created_at
+               , DATE_FORMAT(updated_at,'%Y-%m-%d') AS updated_at
           from   notice_board
          WHERE 1=1
            AND delete_yn = 0
@@ -53,8 +53,8 @@
                   , contents
                   , display_yn
                   , delete_yn
-                  , created_at
-                  , updated_at
+                  , DATE_FORMAT(created_at,'%Y-%m-%d') AS created_at
+                  , DATE_FORMAT(updated_at,'%Y-%m-%d') AS updated_at
               FROM  notice_board
              WHERE notice_idx = #{noticeIdx}
     </select>

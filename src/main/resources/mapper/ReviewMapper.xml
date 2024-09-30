@@ -8,7 +8,7 @@
                         , a.content
                         , a.score
                         , a.tmp_score
-                        , a.kind_score
+                        , a.kindness_score
                         , a.effect_score
                         , a.price_score
                         , a.approve_yn
@@ -16,8 +16,6 @@
                         , a.file_name
                         , a.created_at
                         , a.updated_at
-                        , a.created_by
-                        , a.updated_by
                         , b.hospital_name
                     from  review_entity a
          left outer join  pet_hospital_entity b
@@ -32,7 +30,7 @@
                        AND a.CREATED_BY LIKE CONCAT('%', #{sv}, '%')
                   </if>
                 </if>
-                ORDER BY a.review_idx desc;
+                ORDER BY a.review_idx desc
                    LIMIT #{page}, #{size}
     </select>
 

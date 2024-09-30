@@ -8,6 +8,7 @@ import NoticeWrite from './routes/NoticeWrite';
 import NoticeUpdate from './routes/NoticeUpdate';
 import Login from './components/common/Login';
 import Join from './components/common/Join';
+import ReviewList from "./routes/review/ReviewList";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/update/:noticeIdx" element={<NoticeUpdate />} />
             <Route path="/login" element={<Login />} />
             <Route path="/join" element={<Join />} />
+            <Route path="/review" element={<ReviewList />} />
         </Routes>
     );
 }
