@@ -2,4 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/schema/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.petadmin.db.UserMapper">
+    <insert id="insertUser" parameterType="com.example.petadmin.model.entity.user.UserEntity">
+    INSERT INTO user_entity (
+                user_id
+              , user_pw
+              , email
+              , user_name
+              , phone_num
+              , zip_code
+              , addr
+              , detail_addr
+              , updated_at
+              , created_at
+              , delete_yn
+    )
+         values
+    (           #{userId}
+              , #{userPw}
+              , #{email}
+              , #{userName}
+              , #{phoneNum}
+              , #{zipCode}
+              , #{addr}
+              , #{detailAddr}
+              , now()
+              , now()
+              , 'N'
+    );
+    </insert>
 </mapper>

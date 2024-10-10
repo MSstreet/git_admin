@@ -12,16 +12,16 @@ function Join() {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-        email: '',
-        name: '',
-        password: '',
+        userId: '',
+        userPw: '',
+        userName: '',
         confirmPassword: '',
     });
 
     const [errors, setErrors] = useState({
-        email: '',
-        name: '',
-        password: '',
+        userId: '',
+        userPw: '',
+        userName: '',
         confirmPassword: '',
     });
 
@@ -42,24 +42,20 @@ function Join() {
 
     const validate = (name, value) => {
         switch (name) {
-            case 'name':
+            case 'userName':
                 if (value.length < 2) {
                     return '사용자 이름은 2자 이상이어야 합니다.';
                 }
                 return '';
-            case 'email':
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailPattern.test(value)) {
-                    return '유효한 이메일 주소를 입력하세요.';
-                }
+            case 'userId':
                 return '';
-            case 'password':
+            case 'userPw':
                 if (value.length < 6) {
                     return '비밀번호는 6자 이상이어야 합니다.';
                 }
                 return '';
             case 'confirmPassword':
-                if (value !== formData.password) {
+                if (value !== formData.userPw) {
                     return '비밀번호와 비밀번호 확인이 같아야 합니다.';
                 }
                 return '';
@@ -72,12 +68,15 @@ function Join() {
         e.preventDefault();
 
         // 최종 유효성 검사
-        if (!errors.name && !errors.email && !errors.password && !errors.confirmPassword) {
+        if (!errors.userName && !errors.userId && !errors.userPw && !errors.confirmPassword) {
             try {
-                const response = await axios.post('/api/signup', formData);
+                const response = await axios.post('//localhost:8082/user/signup', formData);
                 console.log('회원가입 성공:', response.data);
+
+                alert('회원가입 성공')
+                navigate('/login')
                 // 성공 메시지 표시 또는 다른 페이지로 이동 등 처리
-                setFormData({ name: '', email: '', password: '' , confirmPassword: ''}); // 폼 초기화
+                //setFormData({ userName: '', userId: '', userPw: '' , confirmPassword: ''}); // 폼 초기화
             } catch (error) {
                 console.error('회원가입 실패:', error);
             }
@@ -91,27 +90,31 @@ function Join() {
             <h2>회원가입</h2>
             <form className="signup-form" onSubmit={handleSubmit}>
                 <input
-                    type="email"
-                    name="email"
-                    placeholder="email"
-                    value={formData.email}
+                    type="text"
+                    name="userId"
+                    placeholder="user ID"
+                    value={formData.userId}
                     onChange={handleChange}
                 />
-                {errors.email && <span className="error">{errors.email}</span>}
-                <input type="text" name="name" value={formData.name} onChange={handleChange}/>
-                {errors.name && <span className="error">{errors.name}</span>}
+                {errors.userId && <span className="error">{errors.userId}</span>}
+                <input type="text"
+                       name="userName"
+                       placeholder="user Name"
+                       value={formData.userName}
+                       onChange={handleChange}/>
+                {errors.userName && <span className="error">{errors.userName}</span>}
                 <input
                     type="password"
-                    name="password"
+                    name="userPw"
                     placeholder="password"
-                    value={formData.password}
+                    value={formData.userPw}
                     onChange={handleChange}
                 />
-                {errors.password && <span className="error">{errors.password}</span>}
+                {errors.userPw && <span className="error">{errors.userPw}</span>}
                 <input
                     type="password"
                     name="confirmPassword"
-                    placeholder="confirmPassword"
+                    placeholder="confirm Password"
                     value={formData.confirmPassword}
                     onChange={handleChange}
                 />

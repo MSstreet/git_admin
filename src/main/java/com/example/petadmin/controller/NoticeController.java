@@ -1,8 +1,8 @@
 package com.example.petadmin.controller;
 
-import com.example.petadmin.dto.notice.NoticeSaveDto;
-import com.example.petadmin.dto.notice.NoticeUpdateDto;
-import com.example.petadmin.entity.notice.NoticeEntity;
+import com.example.petadmin.model.dto.notice.NoticeSaveDto;
+import com.example.petadmin.model.dto.notice.NoticeUpdateDto;
+import com.example.petadmin.model.entity.notice.NoticeEntity;
 import com.example.petadmin.service.NoticeService;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Search;

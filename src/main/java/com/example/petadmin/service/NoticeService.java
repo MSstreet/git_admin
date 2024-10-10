@@ -3,10 +3,9 @@ package com.example.petadmin.service;
 import com.example.petadmin.controller.exception.BaseException;
 import com.example.petadmin.controller.exception.ErrorCode;
 import com.example.petadmin.db.NoticeBoardMapper;
-import com.example.petadmin.dto.notice.NoticeSaveDto;
-import com.example.petadmin.dto.notice.NoticeUpdateDto;
-import com.example.petadmin.entity.notice.NoticeEntity;
-import com.example.petadmin.entity.notice.NoticeEditor;
+import com.example.petadmin.model.dto.notice.NoticeSaveDto;
+import com.example.petadmin.model.dto.notice.NoticeUpdateDto;
+import com.example.petadmin.model.entity.notice.NoticeEntity;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Pagination;
 import com.example.petadmin.util.Search;
@@ -84,7 +83,6 @@ public class NoticeService {
 //        } else {
 //            return Header.ERROR("ERROR");
 //        }
-
         NoticeEntity entity = noticeUpdateDto.toEntity();
         if (noticeBoardMapper.updateNotice(entity) > 0) {
             return Header.OK(entity);

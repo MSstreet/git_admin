@@ -1,8 +1,8 @@
 package com.example.petadmin.controller;
 
 import com.example.petadmin.db.NoticeBoardMapper;
-import com.example.petadmin.dto.notice.NoticeSaveDto;
-import com.example.petadmin.entity.notice.NoticeEntity;
+import com.example.petadmin.model.dto.notice.NoticeSaveDto;
+import com.example.petadmin.model.entity.notice.NoticeEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

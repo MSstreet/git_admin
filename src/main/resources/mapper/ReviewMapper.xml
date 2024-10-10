@@ -2,9 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/schema/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.petadmin.db.ReviewMapper">
-    <select id="getReviewList" resultType="com.example.petadmin.entity.review.ReviewEntity">
+    <select id="getReviewList" resultType="com.example.petadmin.model.entity.review.ReviewEntity">
                   select
                           a.review_idx
+                        , a.title
                         , a.content
                         , a.score
                         , a.tmp_score
@@ -48,6 +49,30 @@
               WHERE 1=1
     </select>
 
+    <select id="getReview" resultType="com.example.petadmin.model.entity.review.ReviewEntity">
+        SELECT
+                a.review_idx
+               ,a.title
+               ,a.content
+               ,a.score
+               ,a.tmp_score
+               ,a.kindness_score
+               ,a.effect_score
+               ,a.price_score
+               ,a.approve_yn
+               ,a.delete_yn
+               ,a.file_name
+               ,a.created_at
+               ,a.updated_at
+               ,b.hospital_name
+          FROM  review_entity a
+     LEFT JOIN  pet_hospital_entity b
+            ON  a.pet_hospital_entity_hospital_id = b.hospital_id
+     LEFT JOIN  user_entity c
+            ON  a.user_entity_user_idx = c.user_idx
+         WHERE  review_idx = #{reviewIdx}
+    </select>
+
     <update id="deleteReview" parameterType="Long">
         UPDATE
                 review_entity
@@ -56,28 +81,28 @@
          WHERE  review_idx = #{reviewIdx}
     </update>
 
-    <update id="updateReview" parameterType="com.example.petadmin.entity.review.ReviewEntity">
+    <update id="updateReview" parameterType="com.example.petadmin.model.entity.review.ReviewEntity">
         UPDATE
                  review_entity
            SET
                  content       = #{content}
-               , score         = #{score}
-               , tmp_score     = #{tmpScore}
-               , kind_score    = #{kindScore}
-               , effect_score  = #{effectScore}
-               , price_score   = #{priceScore}
-               , updated_at    = #{updatedAt}
-               , updated_by    = #{updatedBBy}
-               , tmp_score     = #{tmpScore}
-               , tmp_score     = #{tmpScore}
+                ,score         = #{score}
+                ,tmp_score     = #{tmpScore}
+                ,kind_score    = #{kindScore}
+                ,effect_score  = #{effectScore}
+                ,price_score   = #{priceScore}
+                ,updated_at    = #{updatedAt}
+                ,updated_by    = #{updatedBBy}
+                ,tmp_score     = #{tmpScore}
+                ,tmp_score     = #{tmpScore}
          WHERE   review_idx    = #{reviewIdx}
     </update>
 
-    <update id="approveReview" parameterType="com.example.petadmin.entity.review.ReviewEntity">
+    <update id="approveReview" parameterType="com.example.petadmin.model.entity.review.ReviewEntity">
         UPDATE
                review_entity
            SET
-                approve_yn    = 1
+                approve_yn    = #{approveYn}
          WHERE  review_idx    = #{reviewIdx}
     </update>
 

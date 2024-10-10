@@ -1,6 +1,6 @@
 package com.example.petadmin.db;
 
-import com.example.petadmin.entity.review.ReviewEntity;
+import com.example.petadmin.model.entity.review.ReviewEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;
@@ -17,7 +17,9 @@ public interface ReviewMapper {
 
     int updateReview(ReviewEntity reviewEntity);
 
-    int ApproveReview(ReviewEntity entity);
+    int approveReview(ReviewEntity entity);
+
+    ReviewEntity getReview(Long idx);
 }
 
 

@@ -1,6 +1,4 @@
-package com.example.petadmin.entity.review;
-
-import jakarta.persistence.Table;
+package com.example.petadmin.model.entity.review;
 import lombok.*;
 
 @Getter
@@ -11,6 +9,7 @@ import lombok.*;
 public class ReviewEntity {
 
     private Long reviewIdx;
+    private String title;
     private String content;
     private String hospitalName;
     private int effectScore;

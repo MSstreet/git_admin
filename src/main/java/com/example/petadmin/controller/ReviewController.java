@@ -1,7 +1,7 @@
 package com.example.petadmin.controller;
 
-import com.example.petadmin.dto.review.ReviewUpdateDto;
-import com.example.petadmin.entity.review.ReviewEntity;
+import com.example.petadmin.model.dto.review.ReviewUpdateDto;
+import com.example.petadmin.model.entity.review.ReviewEntity;
 import com.example.petadmin.service.ReviewService;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Search;
@@ -36,9 +36,14 @@ public class ReviewController {
         return reviewService.updateReview(reviewUpdateDto);
     }
 
-    @PatchMapping("/approve/{idx}")
-    Header<ReviewEntity> approveReview(@PathVariable Long idx, @RequestBody ReviewUpdateDto reviewUpdateDto){
-        return reviewService.approveReview(reviewUpdateDto);
+    @PatchMapping("/approve/{reviewIdx}")
+    Header<ReviewEntity> approveReview(@PathVariable("reviewIdx") Long reviewIdx){
+        return reviewService.approveReview(reviewIdx);
+    }
+
+    @GetMapping("/{reviewIdx}")
+    Header<ReviewEntity> getReview(@PathVariable("reviewIdx") Long idx){
+        return reviewService.getReview(idx);
     }
 
 }

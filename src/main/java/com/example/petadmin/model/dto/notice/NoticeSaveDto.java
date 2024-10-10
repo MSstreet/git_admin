@@ -1,6 +1,6 @@
-package com.example.petadmin.dto.notice;
+package com.example.petadmin.model.dto.notice;
 
-import com.example.petadmin.entity.notice.NoticeEntity;
+import com.example.petadmin.model.entity.notice.NoticeEntity;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 

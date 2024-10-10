@@ -1,7 +1,7 @@
 package com.example.petadmin.controller;
 
-import com.example.petadmin.dto.petHospital.PetHospitalSaveDto;
-import com.example.petadmin.entity.petHospital.PetHospitalEntity;
+import com.example.petadmin.model.dto.petHospital.PetHospitalSaveDto;
+import com.example.petadmin.model.entity.petHospital.PetHospitalEntity;
 import com.example.petadmin.service.PetHospitalService;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Search;

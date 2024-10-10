@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/schema/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.petadmin.db.NoticeBoardMapper">
-    <select id="getNoticeList" resultType="com.example.petadmin.entity.notice.NoticeEntity">
+    <select id="getNoticeList" resultType="com.example.petadmin.model.entity.notice.NoticeEntity">
         select
                  notice_idx
                , title
@@ -46,7 +46,7 @@
           </if>
     </select>
 
-    <select id="getNoticeDetail" parameterType="Long" resultType="com.example.petadmin.entity.notice.NoticeEntity">
+    <select id="getNoticeDetail" parameterType="Long" resultType="com.example.petadmin.model.entity.notice.NoticeEntity">
             SELECT
                     notice_idx
                   , title
@@ -59,7 +59,7 @@
              WHERE notice_idx = #{noticeIdx}
     </select>
 
-    <insert id="insertNotice" parameterType="com.example.petadmin.entity.notice.NoticeEntity" keyProperty="noticeIdx" useGeneratedKeys="true">
+    <insert id="insertNotice" parameterType="com.example.petadmin.model.entity.notice.NoticeEntity" keyProperty="noticeIdx" useGeneratedKeys="true">
         INSERT INTO notice_board
         (
                     title
@@ -99,7 +99,7 @@
         </foreach>
     </insert>
 
-    <update id="updateNotice" parameterType="com.example.petadmin.entity.notice.NoticeEntity">
+    <update id="updateNotice" parameterType="com.example.petadmin.model.entity.notice.NoticeEntity">
           UPDATE
                  notice_board
              SET

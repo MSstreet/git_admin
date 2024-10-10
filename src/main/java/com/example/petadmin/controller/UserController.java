@@ -1,7 +1,9 @@
 package com.example.petadmin.controller;
 
-import com.example.petadmin.dto.user.UserSaveDto;
-import com.example.petadmin.entity.user.UserEntity;
+import com.example.petadmin.controller.request.UserSaveRequest;
+import com.example.petadmin.controller.response.Response;
+import com.example.petadmin.controller.response.UserJoinResponse;
+import com.example.petadmin.model.entity.user.UserEntity;
 import com.example.petadmin.service.UserService;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Search;
@@ -31,15 +33,20 @@ public class UserController {
         return userService.getUserDetail(idx);
     }
 
-    @PostMapping("/insert")
-    public Header<UserEntity> insertUser(@RequestBody @Valid UserSaveDto userSaveDto) {
-        return userService.insertUser(userSaveDto);
+//    @PostMapping("/signup")
+//    public Header<UserEntity> insertUser(@RequestBody @Valid UserSaveRequest userSaveRequest) {
+//        return userService.insertUser(userSaveRequest);
+//    }
+
+    @PostMapping("/join")
+    public Response<UserJoinResponse> join(@RequestBody UserSaveRequest request) {
+        return Response.success(UserJoinResponse.fromUser(userService.join(request)));
     }
 
-    @PatchMapping("/update")
-    public Header<UserEntity> updateUser(@RequestBody UserSaveDto userSaveDto) {
-        return userService.updateUser(userSaveDto);
-    }
+//    @PatchMapping("/update")
+//    public Header<UserEntity> updateUser(@RequestBody UserSaveRequest userSaveRequest) {
+//        return userService.updateUser(userSaveRequest);
+//    }
 
     @DeleteMapping("/{idx}")
     public Header<String> deleteUser(@PathVariable Long idx) {

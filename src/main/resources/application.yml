@@ -18,10 +18,10 @@ logging:
   level:
     jdbc:
       connection: 'OFF'
-      sqlonly: 'OFF'
-      resultset: 'OFF'
-      resultsettable: 'OFF'
-      sqltiming: INFO
+      sql only: 'OFF'
+      result: 'OFF'
+      result settable: 'OFF'
+      sliding: INFO
       audit: 'OFF'
 
 jpa:

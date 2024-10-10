@@ -1,8 +1,8 @@
 package com.example.petadmin.service;
 
 import com.example.petadmin.db.ReviewMapper;
-import com.example.petadmin.dto.review.ReviewUpdateDto;
-import com.example.petadmin.entity.review.ReviewEntity;
+import com.example.petadmin.model.dto.review.ReviewUpdateDto;
+import com.example.petadmin.model.entity.review.ReviewEntity;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Pagination;
 import com.example.petadmin.util.Search;
@@ -61,20 +61,22 @@ public class ReviewService {
         }
     }
 
-    public Header<ReviewEntity> approveReview(ReviewUpdateDto reviewUpdateDto) {
+    public Header<ReviewEntity> approveReview(Long reviewIdx) {
         // To do : Null일 경우 예외처리
-        ReviewEntity entity = reviewUpdateDto.toEntity();
+        ReviewEntity entity = reviewMapper.getReview(reviewIdx);
         if(entity.getApproveYn() == 0){
            entity.setApproveYn(1);
         }
-        else{
-            entity.setApproveYn(0);
-        }
-        if(reviewMapper.ApproveReview(entity) > 0){
+        if(reviewMapper.approveReview(entity) > 0){
             return Header.OK(entity);
         }
         else{
             return Header.ERROR("ERROR");
         }
+    }
+
+    public Header<ReviewEntity> getReview(Long idx) {
+        ReviewEntity entity = reviewMapper.getReview(idx);
+        return Header.OK(entity);
     }
 }

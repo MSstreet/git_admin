@@ -1,7 +1,7 @@
-package com.example.petadmin.dto.review;
+package com.example.petadmin.model.dto.review;
 
 
-import com.example.petadmin.entity.review.ReviewEntity;
+import com.example.petadmin.model.entity.review.ReviewEntity;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 

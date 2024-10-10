@@ -1,7 +1,6 @@
 package com.example.petadmin.db;
 
-import com.example.petadmin.entity.notice.NoticeEntity;
-import com.example.petadmin.entity.petHospital.PetHospitalEntity;
+import com.example.petadmin.model.entity.petHospital.PetHospitalEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;

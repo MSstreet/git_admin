@@ -9,6 +9,8 @@ import NoticeUpdate from './routes/NoticeUpdate';
 import Login from './components/common/Login';
 import Join from './components/common/Join';
 import ReviewList from "./routes/review/ReviewList";
+import ReviewDetail from "./routes/review/ReviewDetail";
+
 
 function App() {
     return (
@@ -21,6 +23,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/join" element={<Join />} />
             <Route path="/review" element={<ReviewList />} />
+            <Route path="/review/:reviewIdx" element={<ReviewDetail/>}/>
         </Routes>
     );
 }

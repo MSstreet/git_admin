@@ -1,13 +1,18 @@
 package com.example.petadmin.service;
 
+import com.example.petadmin.controller.exception.ErrorCode;
+import com.example.petadmin.controller.exception.PetAdminApplicationException;
+import com.example.petadmin.controller.request.UserSaveRequest;
 import com.example.petadmin.db.UserMapper;
-import com.example.petadmin.dto.user.UserSaveDto;
-import com.example.petadmin.entity.user.UserEntity;
+import com.example.petadmin.model.dto.user.User;
+import com.example.petadmin.model.entity.user.UserEntity;
 import com.example.petadmin.util.Header;
 import com.example.petadmin.util.Pagination;
 import com.example.petadmin.util.Search;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +21,21 @@ import java.util.List;
 public class UserService {
 
     private final UserMapper userMapper;
+    private final BCryptPasswordEncoder encoder;
+
+    @Transactional
+    public User join(UserSaveRequest request) {
+        // check the userId not exist
+        if(userMapper.checkJoinUser(request) != null) {
+            throw new PetAdminApplicationException(ErrorCode.DUPLICATED_USER, String.format("userName is %s", request.getEmail()));
+        }
+
+        request.setUserPw(encoder.encode(request.getUserPw()));
+
+        UserEntity savedUser = userMapper.insertUser(UserEntity.of(request));
+        return User.fromEntity(savedUser);
+    }
+
     public Header<List<UserEntity>> getUserList(int page, int size, Search search) {
         HashMap<String, Object> paramMap = new HashMap<>();
 
@@ -46,24 +66,24 @@ public class UserService {
         return Header.OK(userMapper.getUserDetail(idx));
     }
 
-    public Header<UserEntity> insertUser(UserSaveDto userSaveDto) {
-        UserEntity entity = userSaveDto.toEntity();
-        if (userMapper.insertUser(entity) > 0) {
-            return Header.OK(entity);
-        } else {
-            return Header.ERROR("ERROR");
-        }
-    }
+//    public Header<UserEntity> insertUser(UserSaveRequest userSaveRequest) {
+//        UserEntity entity = userSaveRequest.toEntity();
+//        if (userMapper.insertUser(entity) > 0) {
+//            return Header.OK(entity);
+//        } else {
+//            return Header.ERROR("ERROR");
+//        }
+//    }
 
-    public Header<UserEntity> updateUser(UserSaveDto userSaveDto) {
-        // To do : Null일 경우 예외처리
-        UserEntity entity = userSaveDto.toEntity();
-        if (userMapper.updateUser(entity) > 0) {
-            return Header.OK(entity);
-        } else {
-            return Header.ERROR("ERROR");
-        }
-    }
+//    public Header<UserEntity> updateUser(UserSaveRequest userSaveRequest) {
+//        // To do : Null일 경우 예외처리
+//        UserEntity entity = userSaveRequest.toEntity();
+//        if (userMapper.updateUser(entity) > 0) {
+//            return Header.OK(entity);
+//        } else {
+//            return Header.ERROR("ERROR");
+//        }
+//    }
 
     public Header<String> deleteUser(Long idx) {
         // To do : Null일 경우 예외처리

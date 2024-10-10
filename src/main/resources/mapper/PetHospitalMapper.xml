@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/schema/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.petadmin.db.PetHospitalMapper">
-    <select id="getPetHosList" resultType="com.example.petadmin.entity.petHospital.PetHospitalEntity">
-             select
+    <select id="getPetHosList" resultType="com.example.petadmin.model.entity.petHospital.PetHospitalEntity">
+             SELECT
                      hospital_id
                    , hospital_addr
                    , hospital_name
                    , hospital_num
                    , oper_state
                    , sigun_name
-               from
+               FROM
                      pet_hospital_entity
            <if test="sk != '' || sk != null">
                 <if test="sk == 'hospitalName'">
@@ -38,7 +38,7 @@
         </if>
     </select>
 
-    <select id="getPetHos" parameterType="Long" resultType="com.example.petadmin.entity.petHospital.PetHospitalEntity">
+    <select id="getPetHos" parameterType="Long" resultType="com.example.petadmin.model.entity.petHospital.PetHospitalEntity">
         SELECT
                  hospital_id
                , hos_latitude
@@ -52,7 +52,7 @@
          WHERE  hospital_id = #{hospitalId}
     </select>
 
-    <insert id="insertPetHos" parameterType="com.example.petadmin.entity.petHospital.PetHospitalEntity" keyProperty="hospitalId" useGeneratedKeys="true">
+    <insert id="insertPetHos" parameterType="com.example.petadmin.model.entity.petHospital.PetHospitalEntity" keyProperty="hospitalId" useGeneratedKeys="true">
         INSERT INTO pet_hospital_entity
                   (
                      hos_longitude
@@ -85,7 +85,8 @@
                      ,hospital_num
                      ,sigun_name
                      ,oper_state
-                   ) VALUES
+                   )
+             VALUES
         <foreach collection="list" item="item" separator=",">
                    (
                       #{hosLongitude}
@@ -99,30 +100,31 @@
         </foreach>
     </insert>
 
-    <update id="updatePetHos" parameterType="com.example.petadmin.entity.petHospital.PetHospitalEntity">
+    <update id="updatePetHos" parameterType="com.example.petadmin.model.entity.petHospital.PetHospitalEntity">
         UPDATE
-                 pet_hospital_entity
+                pet_hospital_entity
            SET
-                 hos_latitude  = #{hosLatitude}
-               , hos_longitude = #{hosLongitude}
-               , hospital_addr = #{hospitalAddr}
-               , hospital_name = #{hospitalName}
-               , hospital_num  = #{hospitalNum}
-               , oper_state    = #{operState}
-               , sigun_name    = #{sigunName}
-         WHERE   hospital_id   = #{hospitalId}
+                hos_latitude  = #{hosLatitude}
+              , hos_longitude = #{hosLongitude}
+              , hospital_addr = #{hospitalAddr}
+              , hospital_name = #{hospitalName}
+              , hospital_num  = #{hospitalNum}
+              , oper_state    = #{operState}
+              , sigun_name    = #{sigunName}
+         WHERE  hospital_id   = #{hospitalId}
     </update>
 
     <update id="deletePetHos" parameterType="Long">
         UPDATE
-                pet_hospital_entity
+               pet_hospital_entity
            SET
-                delete_yn = 1
-         WHERE  hospital_id = #{hospitalId}
+               delete_yn = 1
+         WHERE hospital_id = #{hospitalId}
     </update>
 
     <delete id="deleteAllPetHos">
-        DELETE FROM pet_hospital_entity
+        DELETE
+          FROM pet_hospital_entity
     </delete>
 
 </mapper>

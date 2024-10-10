@@ -1,4 +1,4 @@
-package com.example.petadmin.entity.petHospital;
+package com.example.petadmin.model.entity.petHospital;
 
 import lombok.Builder;
 import lombok.Getter;

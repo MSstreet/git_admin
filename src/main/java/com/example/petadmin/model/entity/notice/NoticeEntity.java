@@ -1,6 +1,5 @@
-package com.example.petadmin.entity.notice;
+package com.example.petadmin.model.entity.notice;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 

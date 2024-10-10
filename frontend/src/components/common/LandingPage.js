@@ -9,7 +9,7 @@ function LandingPage() {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        axios.get("/api/users/logout").then((res) => {
+        axios.get("/users/logout").then((res) => {
             if (res.data.success) {
                 navigate("/login");
             } else {

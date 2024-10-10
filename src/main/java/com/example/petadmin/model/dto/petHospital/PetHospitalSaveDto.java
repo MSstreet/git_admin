@@ -1,6 +1,6 @@
-package com.example.petadmin.dto.petHospital;
+package com.example.petadmin.model.dto.petHospital;
 
-import com.example.petadmin.entity.petHospital.PetHospitalEntity;
+import com.example.petadmin.model.entity.petHospital.PetHospitalEntity;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 

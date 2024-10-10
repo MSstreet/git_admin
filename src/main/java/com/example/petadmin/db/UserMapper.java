@@ -1,6 +1,8 @@
 package com.example.petadmin.db;
 
-import com.example.petadmin.entity.user.UserEntity;
+import com.example.petadmin.controller.request.UserSaveRequest;
+import com.example.petadmin.model.dto.user.User;
+import com.example.petadmin.model.entity.user.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;
@@ -12,9 +14,11 @@ public interface UserMapper {
 
     Integer getUserListCount(HashMap<String, Object> paramMap);
 
+    UserEntity checkJoinUser(UserSaveRequest userSaveRequest);
+
     UserEntity getUserDetail(Long idx);
 
-    int insertUser(UserEntity entity);
+    UserEntity insertUser(UserEntity entity);
 
     int updateUser(UserEntity entity);
 

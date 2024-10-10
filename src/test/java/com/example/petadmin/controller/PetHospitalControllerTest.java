@@ -1,9 +1,8 @@
 package com.example.petadmin.controller;
 
 import com.example.petadmin.db.PetHospitalMapper;
-import com.example.petadmin.dto.petHospital.PetHospitalSaveDto;
-import com.example.petadmin.entity.notice.NoticeEntity;
-import com.example.petadmin.entity.petHospital.PetHospitalEntity;
+import com.example.petadmin.model.dto.petHospital.PetHospitalSaveDto;
+import com.example.petadmin.model.entity.petHospital.PetHospitalEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
