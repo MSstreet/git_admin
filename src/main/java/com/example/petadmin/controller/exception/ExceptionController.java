@@ -1,6 +1,6 @@
 package com.example.petadmin.controller.exception;
 
-import com.example.petadmin.util.Header;
+import com.example.petadmin.utils.Header;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

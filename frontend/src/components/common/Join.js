@@ -70,7 +70,7 @@ function Join() {
         // 최종 유효성 검사
         if (!errors.userName && !errors.userId && !errors.userPw && !errors.confirmPassword) {
             try {
-                const response = await axios.post('//localhost:8082/user/signup', formData);
+                const response = await axios.post('//localhost:8082/user/join', formData);
                 console.log('회원가입 성공:', response.data);
 
                 alert('회원가입 성공')

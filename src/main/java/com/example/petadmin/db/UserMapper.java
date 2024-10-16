@@ -1,7 +1,6 @@
 package com.example.petadmin.db;
 
 import com.example.petadmin.controller.request.UserSaveRequest;
-import com.example.petadmin.model.dto.user.User;
 import com.example.petadmin.model.entity.user.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -18,9 +17,11 @@ public interface UserMapper {
 
     UserEntity getUserDetail(Long idx);
 
-    UserEntity insertUser(UserEntity entity);
+    int insertUser(UserEntity entity);
 
-    int updateUser(UserEntity entity);
+    //int updateUser(UserEntity entity);
 
     int deleteUser(Long idx);
+
+    UserEntity checkUserByName(String userId);
 }

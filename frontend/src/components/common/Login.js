@@ -11,6 +11,10 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const moveToJoin = () => {
+        navigate('/join');
+    };
+
     const handleChange = (e) => {
         const { value, type } = e.target;
         if (type === "email") setEmail(value);
@@ -45,16 +49,17 @@ function Login() {
             }}
         >
             <form
-                style={{ display: "flex", flexDirection: "column" }}
+                style={{display: "flex", flexDirection: "column"}}
                 onSubmit={handleSubmit}
             >
                 <label>Email</label>
-                <input type="email" value={email} onChange={handleChange} />
+                <input type="email" value={email} onChange={handleChange}/>
                 <label>Password</label>
-                <input type="password" value={password} onChange={handleChange} />
+                <input type="password" value={password} onChange={handleChange}/>
 
-                <br />
+                <br/>
                 <button>Login</button>
+                <button onClick={moveToJoin}>Join</button>
             </form>
         </div>
     );

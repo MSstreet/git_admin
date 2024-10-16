@@ -14,6 +14,11 @@ mybatis:
     map-underscore-to-camel-case: 'true'
     call-setters-on-nulls: 'false'
 
+jwt:
+  secret-key: test_project.web_push_test_secret_key
+  # 30 days
+  token.expired-time-ms: 2592000000
+
 logging:
   level:
     jdbc:

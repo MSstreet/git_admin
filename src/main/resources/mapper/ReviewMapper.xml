@@ -3,7 +3,7 @@
 
 <mapper namespace="com.example.petadmin.db.ReviewMapper">
     <select id="getReviewList" resultType="com.example.petadmin.model.entity.review.ReviewEntity">
-                  select
+                  SELECT
                           a.review_idx
                         , a.title
                         , a.content
@@ -18,11 +18,11 @@
                         , a.created_at
                         , a.updated_at
                         , b.hospital_name
-                    from  review_entity a
-         left outer join  pet_hospital_entity b
+                    FROM  review_entity a
+         LEFT OUTER JOIN  pet_hospital_entity b
                       on  a.pet_hospital_entity_hospital_id = b.hospital_id
-         left outer join  user_entity c
-                      on  a.user_entity_user_idx = c.user_idx
+         LEFT OUTER JOIN  user_entity c
+                      ON  a.user_entity_user_idx = c.user_idx
                 <if test="sk != '' || sk != null">
                   <if test="sk == 'content'">
                        AND a.CONTENT LIKE CONCAT('%', #{sv}, '%')

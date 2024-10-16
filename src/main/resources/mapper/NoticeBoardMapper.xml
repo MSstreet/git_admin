@@ -3,7 +3,7 @@
 
 <mapper namespace="com.example.petadmin.db.NoticeBoardMapper">
     <select id="getNoticeList" resultType="com.example.petadmin.model.entity.notice.NoticeEntity">
-        select
+        SELECT
                  notice_idx
                , title
                , contents
@@ -11,7 +11,7 @@
                , delete_yn
                , DATE_FORMAT(created_at,'%Y-%m-%d') AS created_at
                , DATE_FORMAT(updated_at,'%Y-%m-%d') AS updated_at
-          from   notice_board
+          FROM   notice_board
          WHERE 1=1
            AND delete_yn = 0
       <if test="sk != '' || sk != null">

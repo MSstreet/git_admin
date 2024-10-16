@@ -16,7 +16,7 @@
               , created_at
               , delete_yn
     )
-         values
+         VALUES
     (           #{userId}
               , #{userPw}
               , #{email}
@@ -30,4 +30,28 @@
               , 'N'
     );
     </insert>
+
+    <select id="checkJoinUser" resultType="com.example.petadmin.model.entity.user.UserEntity">
+        SELECT
+                user_id
+              , user_pw
+              , email
+              , user_name
+              , phone_num
+              , zip_code
+              , addr
+              , detail_addr
+              , updated_at
+              , created_at
+              , delete_yn
+          FROM  user_entity a
+         WHERE  user_id = #{user_id}
+    </select>
+
+    <select id="checkUserByName" resultType="com.example.petadmin.model.entity.user.UserEntity">
+        SELECT
+                user_idx
+          FROM  user_entity a
+         WHERE  userId = #{userId}
+    </select>
 </mapper>

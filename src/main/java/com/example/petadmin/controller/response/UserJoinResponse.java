@@ -14,7 +14,7 @@ public class UserJoinResponse {
     public static UserJoinResponse fromUser(User user) {
         return new UserJoinResponse(
                 user.getUserIdx(),
-                user.getUserName()
+                user.getUsername()
         );
     }
 }

@@ -6,9 +6,9 @@ import com.example.petadmin.db.NoticeBoardMapper;
 import com.example.petadmin.model.dto.notice.NoticeSaveDto;
 import com.example.petadmin.model.dto.notice.NoticeUpdateDto;
 import com.example.petadmin.model.entity.notice.NoticeEntity;
-import com.example.petadmin.util.Header;
-import com.example.petadmin.util.Pagination;
-import com.example.petadmin.util.Search;
+import com.example.petadmin.utils.Header;
+import com.example.petadmin.utils.Pagination;
+import com.example.petadmin.utils.Search;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

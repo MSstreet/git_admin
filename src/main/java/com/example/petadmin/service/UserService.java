@@ -6,10 +6,14 @@ import com.example.petadmin.controller.request.UserSaveRequest;
 import com.example.petadmin.db.UserMapper;
 import com.example.petadmin.model.dto.user.User;
 import com.example.petadmin.model.entity.user.UserEntity;
-import com.example.petadmin.util.Header;
-import com.example.petadmin.util.Pagination;
-import com.example.petadmin.util.Search;
+import com.example.petadmin.utils.Header;
+import com.example.petadmin.utils.JwtTokenUtils;
+import com.example.petadmin.utils.Pagination;
+import com.example.petadmin.utils.Search;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,10 +22,25 @@ import java.util.HashMap;
 import java.util.List;
 @RequiredArgsConstructor
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserMapper userMapper;
     private final BCryptPasswordEncoder encoder;
+
+    @Value("${jwt.secret-key}")
+    private String secretKey;
+
+    @Value("${jwt.token.expired-time-ms}")
+    private Long expiredTimeMs;
+
+    @Override
+    public User loadUserByUsername(String userId) throws UsernameNotFoundException {
+        UserEntity userEntity = userMapper.checkUserByName(userId);
+        if(userEntity == null) {
+            throw new PetAdminApplicationException(ErrorCode.USER_NOT_FOUND, String.format("userName is %s", userId));
+        }
+        return User.fromEntity(userEntity);
+    }
 
     @Transactional
     public User join(UserSaveRequest request) {
@@ -31,9 +50,22 @@ public class UserService {
         }
 
         request.setUserPw(encoder.encode(request.getUserPw()));
+        UserEntity savedUser = UserEntity.of(request);
 
-        UserEntity savedUser = userMapper.insertUser(UserEntity.of(request));
-        return User.fromEntity(savedUser);
+        if (userMapper.insertUser(savedUser) > 0) {
+            return User.fromEntity(savedUser);
+        } else {
+            throw new PetAdminApplicationException(ErrorCode.USER_JOIN_ERROR);
+        }
+        //UserEntity savedUser = userMapper.insertUser(UserEntity.of(request));
+    }
+
+    public String login(String userName, String password) {
+        User savedUser = loadUserByUsername(userName);
+        if (!encoder.matches(password, savedUser.getPassword())) {
+            throw new PetAdminApplicationException(ErrorCode.INVALID_PASSWORD);
+        }
+        return JwtTokenUtils.generateAccessToken(userName, secretKey, expiredTimeMs);
     }
 
     public Header<List<UserEntity>> getUserList(int page, int size, Search search) {
@@ -66,6 +98,15 @@ public class UserService {
         return Header.OK(userMapper.getUserDetail(idx));
     }
 
+    public Header<String> deleteUser(Long idx) {
+        // To do : Null일 경우 예외처리
+        if (userMapper.deleteUser(idx) > 0) {
+            return Header.OK();
+        } else {
+            return Header.ERROR("ERROR");
+        }
+    }
+
 //    public Header<UserEntity> insertUser(UserSaveRequest userSaveRequest) {
 //        UserEntity entity = userSaveRequest.toEntity();
 //        if (userMapper.insertUser(entity) > 0) {
@@ -84,13 +125,4 @@ public class UserService {
 //            return Header.ERROR("ERROR");
 //        }
 //    }
-
-    public Header<String> deleteUser(Long idx) {
-        // To do : Null일 경우 예외처리
-        if (userMapper.deleteUser(idx) > 0) {
-            return Header.OK();
-        } else {
-            return Header.ERROR("ERROR");
-        }
-    }
 }

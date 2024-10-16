@@ -6,9 +6,9 @@ import com.example.petadmin.db.PetHospitalMapper;
 import com.example.petadmin.model.dto.petHospital.PetHospitalSaveDto;
 import com.example.petadmin.model.entity.petHospital.PetHosEditor;
 import com.example.petadmin.model.entity.petHospital.PetHospitalEntity;
-import com.example.petadmin.util.Header;
-import com.example.petadmin.util.Pagination;
-import com.example.petadmin.util.Search;
+import com.example.petadmin.utils.Header;
+import com.example.petadmin.utils.Pagination;
+import com.example.petadmin.utils.Search;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

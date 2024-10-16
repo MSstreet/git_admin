@@ -3,9 +3,9 @@ package com.example.petadmin.service;
 import com.example.petadmin.db.ReviewMapper;
 import com.example.petadmin.model.dto.review.ReviewUpdateDto;
 import com.example.petadmin.model.entity.review.ReviewEntity;
-import com.example.petadmin.util.Header;
-import com.example.petadmin.util.Pagination;
-import com.example.petadmin.util.Search;
+import com.example.petadmin.utils.Header;
+import com.example.petadmin.utils.Pagination;
+import com.example.petadmin.utils.Search;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

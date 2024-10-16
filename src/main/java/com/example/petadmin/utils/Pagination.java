@@ -1,4 +1,4 @@
-package com.example.petadmin.util;
+package com.example.petadmin.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
