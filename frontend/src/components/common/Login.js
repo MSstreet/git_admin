@@ -17,7 +17,7 @@ function Login() {
 
     const handleChange = (e) => {
         const { value, type } = e.target;
-        if (type === "email") setEmail(value);
+        if (type === "text") setEmail(value);
         else if (type === "password") setPassword(value);
     };
 
@@ -53,7 +53,7 @@ function Login() {
                 onSubmit={handleSubmit}
             >
                 <label>Email</label>
-                <input type="email" value={email} onChange={handleChange}/>
+                <input type="text" value={email} onChange={handleChange}/>
                 <label>Password</label>
                 <input type="password" value={password} onChange={handleChange}/>
 

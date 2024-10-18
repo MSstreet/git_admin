@@ -6,25 +6,28 @@ import React from "react";
 import NoticeDetail from "./routes/NoticeDetail";
 import NoticeWrite from './routes/NoticeWrite';
 import NoticeUpdate from './routes/NoticeUpdate';
-import Login from './components/common/Login';
-import Join from './components/common/Join';
+// import Login from './components/common/Login';
+// import Join from './components/common/Join';
+import Join from './pages/Join';
+import Login from './pages/Login';
 import ReviewList from "./routes/review/ReviewList";
 import ReviewDetail from "./routes/review/ReviewDetail";
+import LoginContextProvider from './contexts/LoginContextProvider';
 
 
 function App() {
     return (
-        <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/notice" element={<NoticeList/>}/>
-            <Route path="/notice/:noticeIdx" element={<NoticeDetail/>}/>
-            <Route path="/write" element={<NoticeWrite />} />
-            <Route path="/update/:noticeIdx" element={<NoticeUpdate />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/join" element={<Join />} />
-            <Route path="/review" element={<ReviewList />} />
-            <Route path="/review/:reviewIdx" element={<ReviewDetail/>}/>
-        </Routes>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/notice" element={<NoticeList/>}/>
+                <Route path="/notice/:noticeIdx" element={<NoticeDetail/>}/>
+                <Route path="/write" element={<NoticeWrite />} />
+                <Route path="/update/:noticeIdx" element={<NoticeUpdate />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/join" element={<Join />} />
+                <Route path="/review" element={<ReviewList />} />
+                <Route path="/review/:reviewIdx" element={<ReviewDetail/>}/>
+            </Routes>
     );
 }
 
