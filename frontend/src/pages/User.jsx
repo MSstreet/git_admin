@@ -6,7 +6,7 @@ const Home = () => {
 
     return (
         <>
-
+            <Header />
             <div className='container'>
                 <h1>User</h1>
                 <hr/>

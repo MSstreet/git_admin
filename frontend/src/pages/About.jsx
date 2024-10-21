@@ -6,7 +6,7 @@ const About = () => {
 
     return (
         <>
-
+            <Header />
             <div className='container'>
                 <h1>About</h1>
                 <hr/>

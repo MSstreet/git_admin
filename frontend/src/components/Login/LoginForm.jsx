@@ -1,9 +1,7 @@
 import React, { useContext } from 'react'
 import { LoginContext } from '../../contexts/LoginContextProvider'
 import './LoginForm.css'
-
 const LoginForm = () => {
-
     const { login } = useContext(LoginContext)          // 📦 LoginContext 의 login 함수
 
     const onLogin = (e) => {
@@ -14,12 +12,11 @@ const LoginForm = () => {
 
         login( username, password )             // 로그인 처리 요청
     }
-
     return (
         <div className="form">
             <h2 className="login-title">Login</h2>
 
-            <form className='login-form' onSubmit={(e) => onLogin(e)}>
+            <form className='login-form' onSubmit={ (e) => onLogin(e) }>
                 <div>
                     <label htmlFor="name">username</label>
                     <input type="text"
@@ -47,6 +44,4 @@ const LoginForm = () => {
         </div>
     )
 }
-
-
 export default LoginForm

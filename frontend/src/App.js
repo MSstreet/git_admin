@@ -1,33 +1,38 @@
-/* App.js */
-import {Route, Routes} from "react-router-dom";
-import NoticeList from "./routes/NoticeList";
-import Home from "./routes/Home";
 import React from "react";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NoticeList from "./routes/NoticeList";
 import NoticeDetail from "./routes/NoticeDetail";
 import NoticeWrite from './routes/NoticeWrite';
 import NoticeUpdate from './routes/NoticeUpdate';
-// import Login from './components/common/Login';
-// import Join from './components/common/Join';
-import Join from './pages/Join';
-import Login from './pages/Login';
 import ReviewList from "./routes/review/ReviewList";
 import ReviewDetail from "./routes/review/ReviewDetail";
+import Home from "./pages/Home";
+import Login from './pages/Login';
+import Join from './pages/Join';
+import User from './pages/User';
+import About from './pages/About';
 import LoginContextProvider from './contexts/LoginContextProvider';
-
+import './App.css';
 
 function App() {
     return (
+
+        <LoginContextProvider>
             <Routes>
-                <Route path="/" element={<Home/>}/>
+                <Route path="/" element={<Home/>}></Route>
+                <Route path="/login" element={<Login/>}></Route>
+                <Route path="/join" element={<Join/>}></Route>
+                <Route path="/user" element={<User/>}></Route>
+                <Route path="/about" element={<About/>}></Route>
                 <Route path="/notice" element={<NoticeList/>}/>
                 <Route path="/notice/:noticeIdx" element={<NoticeDetail/>}/>
                 <Route path="/write" element={<NoticeWrite />} />
                 <Route path="/update/:noticeIdx" element={<NoticeUpdate />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/join" element={<Join />} />
                 <Route path="/review" element={<ReviewList />} />
                 <Route path="/review/:reviewIdx" element={<ReviewDetail/>}/>
             </Routes>
+        </LoginContextProvider>
+
     );
 }
 

@@ -30,11 +30,8 @@ root.render(
         )}
     >
     <BrowserRouter>
-        <LoginContextProvider>
-            <Header/>
             <App/>
             <Footer/>
-        </LoginContextProvider>
     </BrowserRouter>
     </Provider>
 
