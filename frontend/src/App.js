@@ -13,6 +13,7 @@ import User from './pages/User';
 import About from './pages/About';
 import LoginContextProvider from './contexts/LoginContextProvider';
 import './App.css';
+import Admin from "./pages/Admin";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/join" element={<Join/>}></Route>
                 <Route path="/user" element={<User/>}></Route>
                 <Route path="/about" element={<About/>}></Route>
+                <Route path="/admin" element={<Admin/>}></Route>
                 <Route path="/notice" element={<NoticeList/>}/>
                 <Route path="/notice/:noticeIdx" element={<NoticeDetail/>}/>
                 <Route path="/write" element={<NoticeWrite />} />
